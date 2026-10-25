@@ -34,7 +34,7 @@ The ceiling is the ESP32-S3 Full-Speed USB / WiFi uplink. A Raspberry Pi host re
 Design decisions:
 
 - **SPI, not a parallel bus.** The FG23 has no external parallel bus; the Raspberry Pi DPI/SMI interfaces would need an LDMA→GPIO bit-bang on the FG23 side and more mezzanine pins than exist. One SPI lane carries 1 Msps if the samples are packed (see *Rate budget*).
-- **Raspberry Pi is the SPI main, FG23 is the secondary.** The Raspberry Pi SPI secondary mode is not usable at these rates, so the clock direction is reversed with respect to ionos-mini (where the FG23 is the main). The FG23 signals DRDY when a block is ready; the Pi then clocks a fixed-size burst.
+- **Two link modes on the same nets, selected in software** (see *Link modes*). Mode A: the Raspberry Pi is the SPI main and the FG23 the secondary. Mode B (Pi 5 only): the FG23 is the main and the RP1 PIO acts as the secondary. No solder jumpers select the mode.
 - **Zero-CPU data path on the FG23.** LDMA moves samples from the RAIL RX FIFO straight to the EUSART TX register.
 - **Same mezzanine pins as ionos-mini.** The HAT reuses the Silabs radio-board socket and the FG23 pins already validated on ionos-mini; only the roles change.
 - **Sample format:** int16 LE, Q-first (`struct { int16_t q, i; }`), as in Ionos SDR, plus packed-12 and int8 modes for high rates.
@@ -47,12 +47,28 @@ FG23 ports are on BRD4265B (EFR32FG23B010F512IM48, QFN48). The mezzanine pins ar
 
 | Signal | Dir | FG23 port | Mezzanine | RPi GPIO [pin] | RPi function | Notes |
 |---|---|---|---|---|---|---|
-| IQ_SCLK | Pi → FG23 | PC05 | P201-15 | GPIO11 [23] | SPI0 SCLK | EUSART secondary CLK. 22–33 Ω series at the Pi header |
-| IQ_DATA | FG23 → Pi | PC00 | P201-10 | GPIO9 [21] | SPI0 MISO | EUSART secondary TX (I/Q stream). 22–33 Ω series at the radio socket |
-| IQ_CS | Pi → FG23 | PA07 | P201-13 | GPIO8 [24] | SPI0 CE0 | 10 kΩ pull-up to 3V3 keeps the FG23 deselected while the Pi boots |
+| IQ_SCLK | Pi → FG23 | PC05 | P201-15 | GPIO11 [23] | SPI0 SCLK | Direction per link mode. 22 Ω series at both ends |
+| IQ_DATA | FG23 → Pi | PC00 | P201-10 | GPIO9 [21] | SPI0 MISO | I/Q stream. 22 Ω series at both ends |
+| IQ_CS | Pi → FG23 | PA07 | P201-13 | GPIO8 [24] | SPI0 CE0 | Direction per link mode. 22 Ω series at both ends; 10 kΩ pull-up to 3V3 keeps the link idle while either side boots |
 | IQ_MOSI | Pi → FG23 | PA05 | P201-7 | GPIO10 [19] | SPI0 MOSI | Optional in-band commands (full duplex). Was FG23_SPARE; 0 Ω DNP footprint |
-| DRDY | FG23 → Pi | PD02 | P201-9 | GPIO25 [22] | GPIO IRQ | Block ready. Direction reversed vs ionos-mini (there: ESP→FG23 RDY). 10 kΩ pull-down |
+| DRDY | FG23 → Pi | PD02 | P201-9 | GPIO25 [22] | GPIO IRQ | Mode A: FG23 → Pi, block ready. Mode B: Pi → FG23, host DMA armed (as RDY on ionos-mini). 22 Ω series at both ends, 10 kΩ pull-down |
 | CMD | Pi → FG23 | PA06 | P201-11 | GPIO14 [8] | UART TXD | Existing `cmdlink` RX. Needs the PL011 on GPIO14 (`dtoverlay=disable-bt` or `miniuart-bt`) |
+
+Debug solder jumpers: SJ1 (IQ_SCLK) and SJ2 (IQ_CS), 2-pad, normally closed, cuttable, at the Pi header. They are not mode selectors: cutting them isolates the Pi so that the FG23 side can be probed alone.
+
+### Link modes
+
+| | Mode A (default) | Mode B |
+|---|---|---|
+| SPI main | Raspberry Pi SPI0 | FG23 EUSART/USART, 19.5 MHz (39 MHz / 2) |
+| SPI secondary | FG23 EUSART | Pi 5 RP1 PIO state machine on GPIO8–11 |
+| Pi side setup | `dtoverlay=spi0-1cs` | SPI0 disabled; GPIO8–11 assigned to PIO (PIOLib) |
+| DRDY / RDY on PD02 ↔ GPIO25 | FG23 → Pi | Pi → FG23 |
+| Supported hosts | Pi 4, Pi 5 | Pi 5 only (the Pi 4 has no PIO; its BSC-based SPI secondary is too slow) |
+
+Both modes use identical wiring, and the mode is set by the FG23 firmware and the Pi configuration. The 22 Ω series resistors at both ends keep the termination correct in either drive direction and limit the current if both sides drive a net during a misconfiguration.
+
+Mode B risk: PIOLib reaches the RP1 PIO from Linux through a firmware mailbox, with at least ~10 µs per operation; the state-machine FIFOs are DMA-capable, but no throughput figure is published. M1 measures it.
 
 ### Debug and programming
 
@@ -98,7 +114,7 @@ Consequences:
 
 ## FG23 firmware changes
 
-1. EUSART (or USART) on PC05 / PC00 / PA07 from main to **secondary** mode; confirm the routing in the Pin Tool.
+1. EUSART (or USART) on PC05 / PC00 / PA07: **secondary** for mode A, **main** for mode B (as on ionos-mini), selected at build or run time; confirm the routing in the Pin Tool.
 2. LDMA: RAIL RX FIFO → EUSART TXDATA, block-sized descriptors, DRDY (PD02) raised per block.
 3. PD02 as an output (it is an input on ionos-mini).
 4. Frame header per block: sync word, sequence counter, sample format, overflow flag.

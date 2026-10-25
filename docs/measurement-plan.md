@@ -13,9 +13,11 @@ All results go to `measurements/<ID>-<date>/` with raw data, the script used, an
 1. FG23 firmware sends a deterministic test pattern (32-bit counter + CRC-16 per block) over EUSART secondary.
 2. The Pi reads fixed-size blocks on DRDY at SCLK = 10, 15.6, 20.8, 25, 31.25 MHz (Pi 4 dividers; repeat with Pi 5 rates).
 3. Record the bit error rate, sequence gaps and DRDY-to-CS latency.
-4. Repeat with the FG23 as main (19.5 MHz = 39 MHz / 2) as a fallback reference.
+4. Mode B (Pi 5 only): FG23 as main at 19.5 MHz (39 MHz / 2), RP1 PIO state machine as secondary on GPIO8–11, DMA from the PIO RX FIFO via PIOLib. Record the sustained throughput, dropped blocks and Pi CPU load.
+5. Compare modes A and B on the same hardware. The only change is the Pi configuration and the FG23 firmware build.
 
-Pass: ≥ 25 MHz with zero errors over 10⁹ bits.
+Pass (mode A): ≥ 25 MHz with zero errors over 10⁹ bits.
+Pass (mode B): ≥ 19.5 Mbit/s sustained with zero dropped blocks over 10⁹ bits.
 
 ## M2 — Effective number of bits of the FG23 I/Q
 
