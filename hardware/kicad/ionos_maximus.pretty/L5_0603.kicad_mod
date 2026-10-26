@@ -1,0 +1,293 @@
+(footprint "L5_0603"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "0603 Gehäuse")
+	(property "Reference" "REF**"
+		(at 1.7188 0 270)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "578d2ce3-ca2d-4fd2-8205-2c69e44ea654")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.2)
+			)
+			(justify left bottom)
+		)
+	)
+	(property "Value" "L5_0603"
+		(at 1.75 1.55 90)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "5224ad8e-5396-4e6f-9cc7-b881bb559a82")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.13)
+			)
+			(justify left bottom)
+		)
+	)
+	(property "Datasheet" "https://hu.mouser.com/datasheet/2/281/QNFA9101-1915702.pdf"
+		(at 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d6c2c943-7607-4b77-af7c-c16616ecb48e")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "Ferrite Beads FB SMD 0603inch 30oh m POWRTRN, AEC-Q200 Alternate Sizing Guide Below"
+		(at 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e0afd6c6-1223-42e0-9324-58a514ca76a4")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start 0.7938 -1.4288)
+		(end 0.7938 1.4288)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+	)
+	(fp_line
+		(start -0.7938 1.4288)
+		(end -0.7938 -1.4288)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+	)
+	(fp_circle
+		(center 0.7 0)
+		(end 0.7707 0)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Adhes")
+	)
+	(fp_circle
+		(center 0.3 0)
+		(end 0.3707 0)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Adhes")
+	)
+	(fp_circle
+		(center -0.3 0)
+		(end -0.2293 0)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Adhes")
+	)
+	(fp_circle
+		(center -0.7 0)
+		(end -0.6293 0)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Adhes")
+	)
+	(fp_poly
+		(pts
+			(xy 0.3 0.145)
+			(xy 0.701 0.145)
+			(xy 0.701 -0.145)
+			(xy 0.3 -0.145)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill yes)
+		(layer "F.Adhes")
+	)
+	(fp_poly
+		(pts
+			(xy -0.7 0.145)
+			(xy -0.299 0.145)
+			(xy -0.299 -0.145)
+			(xy -0.7 -0.145)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill yes)
+		(layer "F.Adhes")
+	)
+	(fp_line
+		(start 0.69 -1.39)
+		(end 0.69 1.39)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+	)
+	(fp_line
+		(start -0.69 -1.39)
+		(end 0.69 -1.39)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+	)
+	(fp_line
+		(start -0.69 1.39)
+		(end -0.69 -1.39)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+	)
+	(fp_line
+		(start -0.69 1.39)
+		(end 0.69 1.39)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+	)
+	(fp_line
+		(start -0.7938 -1.4288)
+		(end 0.7938 -1.4288)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.Fab")
+	)
+	(fp_line
+		(start 0.45 -0.8)
+		(end -0.45 -0.8)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+	)
+	(fp_line
+		(start -0.45 -0.8)
+		(end -0.45 0.8)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+	)
+	(fp_line
+		(start 0.45 0.8)
+		(end 0.45 -0.8)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+	)
+	(fp_line
+		(start -0.45 0.8)
+		(end 0.45 0.8)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+	)
+	(fp_line
+		(start 0.7938 1.4288)
+		(end -0.7938 1.4288)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.Fab")
+	)
+	(fp_poly
+		(pts
+			(xy -0.4 -0.5)
+			(xy 0.5 -0.5)
+			(xy 0.5 -0.8)
+			(xy -0.4 -0.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill yes)
+		(layer "F.Fab")
+	)
+	(fp_poly
+		(pts
+			(xy -0.45 0.8)
+			(xy 0.5 0.8)
+			(xy 0.5 0.5)
+			(xy -0.45 0.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill yes)
+		(layer "F.Fab")
+	)
+	(pad "1" smd rect
+		(at 0 0.8)
+		(size 0.9652 0.762)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(solder_mask_margin 0.05)
+		(solder_paste_margin -0.0127)
+		(thermal_bridge_angle 0)
+	)
+	(pad "2" smd rect
+		(at 0 -0.8)
+		(size 0.9652 0.762)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(solder_mask_margin 0.05)
+		(solder_paste_margin -0.0127)
+		(thermal_bridge_angle 0)
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/3dmodels/L5_0603.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

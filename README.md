@@ -139,6 +139,10 @@ Details in [docs/measurement-plan.md](docs/measurement-plan.md).
 - [ionos-sdr/ionos-sdr](https://github.com/ionos-sdr/ionos-sdr) – firmware, `libionos`, host software
 - [ionos-sdr/ionos-sdr-mini](https://github.com/ionos-sdr/ionos-sdr-mini) – ESP32-S3 radio-board cradle
 
+## Hardware
+
+KiCad 10 project, generators and checks in [`hardware/`](hardware/README.md): rev A, schematic and placement done, routing next.
+
 ## Licensing
 
 - Firmware and host code: MIT (see [LICENSE](LICENSE))

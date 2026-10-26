@@ -1,0 +1,8 @@
+_tmp/
+hardware/out/
+hardware/kicad/*-backups/
+hardware/kicad/*.kicad_prl
+hardware/kicad/fp-info-cache
+hardware/gen/__pycache__/
+__pycache__/
+hardware/gen/lint/

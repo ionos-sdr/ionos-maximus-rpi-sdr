@@ -1,0 +1,4 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "ionos_maximus")(type "KiCad")(uri "${KIPRJMOD}/ionos_maximus.kicad_sym")(options "")(descr "project symbols"))
+)

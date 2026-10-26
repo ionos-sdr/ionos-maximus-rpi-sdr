@@ -1,0 +1,290 @@
+(footprint "SOT-23-5"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Small Outline Transistor (SOT23), 0.95 mm pitch; 5 pin, 2.95 mm L X 1.60 mm W X 1.45 mm H body\\n\\nPCB Libraries Packages")
+	(property "Reference" "REF**"
+		(at 0 -2.925001)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "9bd961d8-90d6-4ee0-9c03-8623aedae7a5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.2)
+			)
+			(justify left bottom)
+		)
+	)
+	(property "Value" "SOT-23-5"
+		(at -2.54 3.556)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "351566e6-df2e-4762-96e4-88c13528f161")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.13)
+			)
+			(justify left bottom)
+		)
+	)
+	(property "Datasheet" "https://www.ti.com/lit/ds/symlink/lp5907.pdf"
+		(at 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f661021b-2352-4afe-89c7-5e7fcc7e75ad")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "250mA ultra-low-noise LDO, 6.5uVrms, fixed 3.3V, SOT-23-5"
+		(at 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f536cd3e-32ca-4935-be26-af9dae060896")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -0.596826 -1.48)
+		(end 0.596825 -1.48)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+	)
+	(fp_line
+		(start -0.596826 1.48)
+		(end 0.596825 1.48)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+	)
+	(fp_circle
+		(center -2.4 -1)
+		(end -2.3 -1)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+	)
+	(fp_line
+		(start -2.11 -1.605)
+		(end -2.11 1.605)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+	)
+	(fp_line
+		(start -2.11 1.605)
+		(end -1.1 1.605)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+	)
+	(fp_line
+		(start -1.1 -1.8)
+		(end -1.1 -1.605)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+	)
+	(fp_line
+		(start -1.1 -1.605)
+		(end -2.11 -1.605)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+	)
+	(fp_line
+		(start -1.1 1.605)
+		(end -1.1 1.8)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+	)
+	(fp_line
+		(start -1.1 1.8)
+		(end 1.1 1.8)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+	)
+	(fp_line
+		(start 1.1 -1.8)
+		(end -1.1 -1.8)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+	)
+	(fp_line
+		(start 1.1 -1.605)
+		(end 1.1 -1.8)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+	)
+	(fp_line
+		(start 1.1 1.605)
+		(end 2.06 1.605)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+	)
+	(fp_line
+		(start 1.1 1.8)
+		(end 1.1 1.605)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+	)
+	(fp_line
+		(start 2.06 -1.605)
+		(end 1.1 -1.605)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+	)
+	(fp_line
+		(start 2.06 1.605)
+		(end 2.06 -1.605)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+	)
+	(fp_line
+		(start -0.8 -1.48)
+		(end 0.8 -1.48)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+	)
+	(fp_line
+		(start -0.8 1.48)
+		(end -0.8 -1.48)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+	)
+	(fp_line
+		(start 0.8 -1.48)
+		(end 0.8 1.48)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+	)
+	(fp_line
+		(start 0.8 1.48)
+		(end -0.8 1.48)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+	)
+	(pad "1" smd roundrect
+		(at -1.3 -0.95 180)
+		(size 1 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.245)
+		(solder_mask_margin 0.025)
+		(solder_paste_margin -0.0127)
+		(thermal_bridge_angle 0)
+	)
+	(pad "2" smd roundrect
+		(at -1.3 0 180)
+		(size 1 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.245)
+		(solder_mask_margin 0.025)
+		(solder_paste_margin -0.0127)
+		(thermal_bridge_angle 0)
+	)
+	(pad "3" smd roundrect
+		(at -1.3 0.95 180)
+		(size 1 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.245)
+		(solder_mask_margin 0.025)
+		(solder_paste_margin -0.0127)
+		(thermal_bridge_angle 0)
+	)
+	(pad "4" smd roundrect
+		(at 1.3 0.95)
+		(size 1 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.245)
+		(solder_mask_margin 0.025)
+		(solder_paste_margin -0.0127)
+		(thermal_bridge_angle 0)
+	)
+	(pad "5" smd roundrect
+		(at 1.3 -0.95)
+		(size 1 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.245)
+		(solder_mask_margin 0.025)
+		(solder_paste_margin -0.0127)
+		(thermal_bridge_angle 0)
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/3dmodels/SOT-23-5.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
