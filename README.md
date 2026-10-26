@@ -1,5 +1,7 @@
 # ionos-maximus-rpi-sdr
 
+<p align="center"><img src="docs/img/banner.png" width="100%" alt="IonosSDR maximus"></p>
+
 Raspberry Pi host variant of the [Ionos SDR](https://github.com/ionos-sdr/ionos-sdr) platform: an EFR32FG23 sub-GHz SoC radio streaming I/Q directly to a Raspberry Pi over SPI. The goal is to lift the current ~250 ksps host-link ceiling to ~1 Msps.
 
 Status: **concept / measurement phase**. Nothing in this repository is validated unless it is explicitly marked as measured.
