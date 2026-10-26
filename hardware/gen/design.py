@@ -22,7 +22,7 @@ RPI = {1: '3V3_PI', 17: '3V3_PI', 2: '5V0', 4: '5V0',
        24: 'IQ_CS_HDR', 27: 'ID_SD', 28: 'ID_SC'}
 
 # Radio board mezzanine (WSTK radio board interface, as on ionos-sdr-mini)
-P200 = {1: '3V3_RB', 2: 'GND', 17: 'RESETn_RB', 37: '5V_RB', 38: 'GND', 39: 'I2C_SCL', 40: 'I2C_SDA'}
+P200 = {1: '3V3_RB', 2: 'GND', 17: 'RESETn_RB', 37: '5V_RB', 38: 'GND', 39: 'I2C_SCL_RB', 40: 'I2C_SDA_RB'}
 P201 = {1: 'GND', 2: 'VMCU_IN', 7: 'IQ_MOSI_RB', 9: 'DRDY_RB', 10: 'IQ_DATA_RB', 11: 'CMD_RB',
         13: 'IQ_CS_RB', 15: 'IQ_SCLK_RB', 19: 'SWO_RB', 21: 'SWDIO_RB', 23: 'SWCLK_RB', 39: 'GND', 40: 'VRF_IN'}
 
@@ -67,6 +67,11 @@ PARTS = [
     ('R12', 'R', '10k', R0402, {'1': 'DRDY', '2': 'GND'}, False, {}),
     ('R13', 'R', 'NA(0R)', R0402, {'1': 'IQ_MOSI_PI', '2': 'IQ_MOSI_RB'}, True, {'Note': 'optional in-band commands'}),
     ('R14', 'R', '0R', R0402, {'1': 'CMD_PI', '2': 'CMD_RB'}, False, {'Note': 'cmdlink, Pi PL011 TXD'}),
+    # board-ID I2C cut points, as on ionos-sdr-mini (JP3/JP4, R6/R7); the Pi has 1k8 on GPIO2/3, so R18/R19 DNP
+    ('JP9', 'SJ_Bridged', 'Bridged', SJB, {'1': 'I2C_SCL', '2': 'I2C_SCL_RB'}, False, {}),
+    ('JP10', 'SJ_Bridged', 'Bridged', SJB, {'1': 'I2C_SDA', '2': 'I2C_SDA_RB'}, False, {}),
+    ('R18', 'R', 'NA(4.7k)', R0402, {'1': 'I2C_SCL_RB', '2': '3V3_RB'}, True, {'Note': 'Pi has 1k8 on GPIO3'}),
+    ('R19', 'R', 'NA(4.7k)', R0402, {'1': 'I2C_SDA_RB', '2': '3V3_RB'}, True, {'Note': 'Pi has 1k8 on GPIO2'}),
     # SWD from the Pi (OpenOCD linuxgpiod), Tag-Connect for an external probe
     ('JP4', 'SJ_Bridged', 'Bridged', SJB, {'1': 'SWDIO_PI', '2': 'SWDIO_RB'}, False, {}),
     ('JP5', 'SJ_Bridged', 'Bridged', SJB, {'1': 'SWCLK_PI', '2': 'SWCLK_RB'}, False, {}),

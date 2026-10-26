@@ -406,6 +406,22 @@ def draw_swd(sh, X, Y):
         sh.glabel(nets[num], e, right=True)
 
 
+def draw_cut(sh, y, x, left, jp, right, pull):
+    """Pi label -> cut jumper -> node (pull-up to 3V3_RB, not fitted) -> radio-side label (ionos-sdr-mini JP3/JP4)."""
+    sh.glabel(left, (x, y), right=False)
+    sh.part(jp, x + 10.16, y, F_SJ)
+    sh.wire((x, y), sh.pin(jp, '1'))
+    n = (sh.pin(jp, '2')[0] + 5.08, y)
+    e = (n[0] + 7.62, y)
+    sh.wire(sh.pin(jp, '2'), n, e)
+    sh.junction(n)
+    k = (n[0], y - 5.08)
+    sh.wire(n, k)
+    sh.part(pull, k[0] + 5.08, k[1], ((0, -2.54, None), (0, 2.54, None)))
+    sh.power('3V3_RB', sh.pin(pull, '2'))
+    sh.glabel(right, e, right=True)
+
+
 def draw_eeprom(sh, X, Y):
     """HAT ID EEPROM per the RPi HAT design guide: CAT24C32 at 0x50, 3.9k pull-ups, WP 1k pull-up + jumper."""
     sh.part('U2', X, Y, ((2.54, -12.7, 'left'), (2.54, 12.7, 'left')))
@@ -469,8 +485,10 @@ def build():
     # ---- block C: P200
     sh.block('P200 - radio board header', 'supply, reset, board-ID EEPROM (I2C)', 279.4, 15.24, 405.13, 127.0)
     draw_mezz(sh, 'P200', 321.31, 38.1, {'1': to_power('3V3_RB'), '2': to_power('GND'), '38': gnd_crossing,
-                                          '40': long_label('I2C_SDA', 7.62)})
-    sh.text('Board-ID EEPROM (M24C02, radio board) on Pi I2C1;\npull-ups: 1k8 on the Pi, none on the radio board (only WP).\n'
+                                          '40': long_label('I2C_SDA_RB', 7.62)})
+    draw_cut(sh, 63.5, 360.68, 'I2C_SCL', 'JP9', 'I2C_SCL_RB', 'R18')
+    draw_cut(sh, 78.74, 360.68, 'I2C_SDA', 'JP10', 'I2C_SDA_RB', 'R19')
+    sh.text('Board-ID EEPROM (M24C02) on Pi I2C1, cut points JP9/JP10 as on ionos-sdr-mini.\nR18/R19 not fitted: 1k8 on the Pi, none on the radio board.\n'
             'P200-36 USB_VREG: radio-board output, never drive.', (284.48, 124.46))
     # ---- block D: radio supply
     sh.block('Radio supply', 'Pi 5 V -> FB1 -> LP5907 -> 3V3_RADIO -> R1 0R -> VMCU_IN (P201-2)', 15.24, 132.08, 274.32, 198.12)

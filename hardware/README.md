@@ -23,6 +23,7 @@ The radio board sits on P200 / P201 (2x20, 1.27 mm, 24 mm apart, footprint and J
 | Radio supply | FB1, U1 LP5907-3.3, C1-C5, R1 0R, JP1 | Pi 5 V -> ferrite -> LDO -> VMCU_IN (P201-2); JP1 feeds the board-ID EEPROM (P200-1). R2 (DNP) reaches P200-37, which is USB_VBUS on BRD4265B (5 V is P200-35) |
 | I/Q link | R3-R6, R8-R11 22R, R7 10k CS pull-up, R12 10k DRDY pull-down | 22R at both ends of SCLK, CS, DATA, DRDY. JP2 / JP3 = README SJ1 / SJ2 (cut to isolate the Pi). R13 (DNP) = IQ_MOSI |
 | cmdlink | R14 0R | Pi PL011 TXD (GPIO14) -> PA06 |
+| Board-ID I2C | JP9 / JP10, R18 / R19 (DNP 4.7k) | cut points as on ionos-sdr-mini (JP3/JP4, R6/R7); pull-ups not fitted, the Pi has 1.8k on GPIO2/3 |
 | SWD | JP4-JP7, J2 (DNP, TC2030-NL) | OpenOCD linuxgpiod from the Pi; cut JP4-JP7 for an external probe |
 | ID EEPROM | U2 CAT24C32WI-GT3, R15/R16 3.9k, R17 1k WP pull-up, JP8, TP3 | per the RPi HAT design guide, auto-loads the overlays; bridge JP8 to re-flash |
 

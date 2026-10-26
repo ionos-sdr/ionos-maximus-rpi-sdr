@@ -7330,7 +7330,7 @@
 		)
 		(uuid "f2e72d4a-e88c-526c-b38a-d8b72c3fe07d")
 	)
-	(global_label "I2C_SCL"
+	(global_label "I2C_SCL_RB"
 		(shape passive)
 		(at 318.77 86.36 180)
 		(fields_autoplaced yes)
@@ -7340,7 +7340,7 @@
 			)
 			(justify right)
 		)
-		(uuid "8e4fcfa3-8dd6-5f9d-815d-7eab3b9da970")
+		(uuid "3b8f56ac-96c9-5178-9f55-0e6bba12d322")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 318.77 86.36 0)
 			(hide yes)
@@ -7362,7 +7362,7 @@
 		)
 		(uuid "0e24d487-067f-5535-b6c0-8e7c96db414a")
 	)
-	(global_label "I2C_SDA"
+	(global_label "I2C_SDA_RB"
 		(shape passive)
 		(at 351.79 86.36 0)
 		(fields_autoplaced yes)
@@ -7372,7 +7372,7 @@
 			)
 			(justify left)
 		)
-		(uuid "0e5743e1-f06b-5761-a28f-5e09e39c0291")
+		(uuid "036ba612-3bcc-5b5c-9782-c0367b7301a4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 351.79 86.36 0)
 			(hide yes)
@@ -7383,7 +7383,589 @@
 			)
 		)
 	)
-	(text "Board-ID EEPROM (M24C02, radio board) on Pi I2C1;"
+	(global_label "I2C_SCL"
+		(shape passive)
+		(at 360.68 63.5 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "39ee0254-ba12-5346-b517-9fbfb77a524f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 360.68 63.5 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ionos_maximus:SJ_Bridged")
+		(at 370.84 63.5 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "47bb008b-15af-5d07-9af9-f27ff567bc42")
+		(property "Reference" "JP9"
+			(at 370.84 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Bridged"
+			(at 370.84 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm"
+			(at 370.84 63.5 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 370.84 63.5 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 370.84 63.5 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a11a7787-5e4d-58b6-9ee9-185b2d26f351")
+		)
+		(pin "2"
+			(uuid "709f03e0-e1a1-5789-9904-c0ae993ea072")
+		)
+		(instances
+			(project "ionos_maximus"
+				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
+					(reference "JP9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 360.68 63.5)
+			(xy 365.76 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "84b4dc29-c654-574d-803d-8fc10e469870")
+	)
+	(wire
+		(pts
+			(xy 375.92 63.5)
+			(xy 381 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5d2dc877-cbfd-544a-a1ba-b7c5013d2612")
+	)
+	(wire
+		(pts
+			(xy 381 63.5)
+			(xy 388.62 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "de21f1fb-3684-58ba-b8f6-d70967fbdef9")
+	)
+	(junction
+		(at 381 63.5)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4484e861-58a8-523c-a2da-91a071f1ba91")
+	)
+	(wire
+		(pts
+			(xy 381 63.5)
+			(xy 381 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e767e3fa-8c2e-53d0-96ee-2bd84cac5bc0")
+	)
+	(symbol
+		(lib_id "ionos_maximus:R")
+		(at 386.08 58.42 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp yes)
+		(uuid "59b68ce7-b780-5f61-9152-9c296c2161d7")
+		(property "Reference" "R18"
+			(at 386.08 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "NA(4.7k)"
+			(at 386.08 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "ionos_maximus:RESC1005X40_0402"
+			(at 386.08 58.42 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 386.08 58.42 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Pi has 1k8 on GPIO3"
+			(at 386.08 58.42 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "90654b93-51b1-5cf0-b249-143b241a66e1")
+		)
+		(pin "2"
+			(uuid "4b543e6c-a306-5e2b-8241-fe0aab6f842c")
+		)
+		(instances
+			(project "ionos_maximus"
+				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
+					(reference "R18")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ionos_maximus:3V3_RB")
+		(at 391.16 58.42 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(dnp no)
+		(uuid "488e55b5-9485-5fb5-8b3c-9fb635cc55da")
+		(property "Reference" "#PWR011"
+			(at 391.16 58.42 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "3V3_RB"
+			(at 391.16 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 391.16 58.42 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 391.16 58.42 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 391.16 58.42 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a4c5e081-1a06-58d1-a17d-9574986b825e")
+		)
+		(instances
+			(project "ionos_maximus"
+				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
+					(reference "#PWR011")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "I2C_SCL_RB"
+		(shape passive)
+		(at 388.62 63.5 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "c5d367e4-98b4-5d21-89da-32446d94a034")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 388.62 63.5 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "I2C_SDA"
+		(shape passive)
+		(at 360.68 78.74 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "808c8966-b905-5929-8ac1-3c844d544f78")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 360.68 78.74 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ionos_maximus:SJ_Bridged")
+		(at 370.84 78.74 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "062b81a7-1405-5286-a75a-da5589d99da6")
+		(property "Reference" "JP10"
+			(at 370.84 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Bridged"
+			(at 370.84 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm"
+			(at 370.84 78.74 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 370.84 78.74 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 370.84 78.74 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "4756c3ca-4521-5b61-bc4a-82370b0f12a8")
+		)
+		(pin "2"
+			(uuid "b56bde38-208f-5eff-be46-522ab85c5b72")
+		)
+		(instances
+			(project "ionos_maximus"
+				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
+					(reference "JP10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 360.68 78.74)
+			(xy 365.76 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a007fbc7-ca83-54fc-8694-703b30785cf3")
+	)
+	(wire
+		(pts
+			(xy 375.92 78.74)
+			(xy 381 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c28c1260-14b3-59ff-9443-d4e6c728c4cf")
+	)
+	(wire
+		(pts
+			(xy 381 78.74)
+			(xy 388.62 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "21b72d2c-bdbc-55ca-a9c6-b452c4e9b157")
+	)
+	(junction
+		(at 381 78.74)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "78973a98-7f7b-5c6a-9608-5b378599afdd")
+	)
+	(wire
+		(pts
+			(xy 381 78.74)
+			(xy 381 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d99d7d2c-9d7b-5ca9-8c81-90994d64d4cf")
+	)
+	(symbol
+		(lib_id "ionos_maximus:R")
+		(at 386.08 73.66 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp yes)
+		(uuid "2f58b26f-72b5-5026-9447-f9dcca8d12db")
+		(property "Reference" "R19"
+			(at 386.08 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "NA(4.7k)"
+			(at 386.08 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "ionos_maximus:RESC1005X40_0402"
+			(at 386.08 73.66 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 386.08 73.66 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Pi has 1k8 on GPIO2"
+			(at 386.08 73.66 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "69c50f64-814f-55a4-bb32-de98a42fc100")
+		)
+		(pin "2"
+			(uuid "02a05d49-0d3c-57d0-a0bf-9b0cb269d97f")
+		)
+		(instances
+			(project "ionos_maximus"
+				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
+					(reference "R19")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "ionos_maximus:3V3_RB")
+		(at 391.16 73.66 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(dnp no)
+		(uuid "98effa4e-5c00-5491-bdd8-887fee2d56b3")
+		(property "Reference" "#PWR012"
+			(at 391.16 73.66 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "3V3_RB"
+			(at 391.16 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 391.16 73.66 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 391.16 73.66 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 391.16 73.66 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "c1827366-70c5-5d07-958a-34e4afa453d5")
+		)
+		(instances
+			(project "ionos_maximus"
+				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
+					(reference "#PWR012")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "I2C_SDA_RB"
+		(shape passive)
+		(at 388.62 78.74 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5512ea8c-01c1-540e-86f9-fa9d26dab8b7")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 388.62 78.74 0)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(text "Board-ID EEPROM (M24C02) on Pi I2C1, cut points JP9/JP10 as on ionos-sdr-mini."
 		(exclude_from_sim no)
 		(at 284.48 119.38 0)
 		(effects
@@ -7392,9 +7974,9 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "2d8a4de7-915c-5145-887c-2b2524baa51f")
+		(uuid "6db89f29-040b-5b4a-a03e-87ac60940f26")
 	)
-	(text "pull-ups: 1k8 on the Pi, none on the radio board (only WP)."
+	(text "R18/R19 not fitted: 1k8 on the Pi, none on the radio board."
 		(exclude_from_sim no)
 		(at 284.48 121.92 0)
 		(effects
@@ -7403,7 +7985,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "e476cf83-d929-51f0-99df-f89ab697a8fc")
+		(uuid "6e9dd8f2-7259-53f1-b439-5de02e0f0968")
 	)
 	(text "P200-36 USB_VREG: radio-board output, never drive."
 		(exclude_from_sim no)
@@ -7525,8 +8107,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "488e55b5-9485-5fb5-8b3c-9fb635cc55da")
-		(property "Reference" "#PWR011"
+		(uuid "f0ac56d2-def5-56c1-96b5-9a5d21d68c27")
+		(property "Reference" "#PWR013"
 			(at 30.48 154.94 0)
 			(hide yes)
 			(effects
@@ -7571,12 +8153,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "a4c5e081-1a06-58d1-a17d-9574986b825e")
+			(uuid "ea822ebf-1d22-5f3a-a889-edc106aca0ae")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR011")
+					(reference "#PWR013")
 					(unit 1)
 				)
 			)
@@ -7665,8 +8247,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "98effa4e-5c00-5491-bdd8-887fee2d56b3")
-		(property "Reference" "#PWR012"
+		(uuid "1cd37b76-6c94-5b91-80d7-0ec4f68c6999")
+		(property "Reference" "#PWR014"
 			(at 38.1 165.1 0)
 			(hide yes)
 			(effects
@@ -7711,12 +8293,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "c1827366-70c5-5d07-958a-34e4afa453d5")
+			(uuid "669d32ab-55f7-54e7-8bd8-e745e886c45a")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR012")
+					(reference "#PWR014")
 					(unit 1)
 				)
 			)
@@ -7803,8 +8385,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "f0ac56d2-def5-56c1-96b5-9a5d21d68c27")
-		(property "Reference" "#PWR013"
+		(uuid "333ada34-4b1a-545f-a8dc-0d9e154b3e4d")
+		(property "Reference" "#PWR015"
 			(at 58.42 154.94 0)
 			(hide yes)
 			(effects
@@ -7849,12 +8431,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "ea822ebf-1d22-5f3a-a889-edc106aca0ae")
+			(uuid "60519edf-4f5f-56bc-aec6-ea915e37a56b")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR013")
+					(reference "#PWR015")
 					(unit 1)
 				)
 			)
@@ -7943,8 +8525,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "1cd37b76-6c94-5b91-80d7-0ec4f68c6999")
-		(property "Reference" "#PWR014"
+		(uuid "720d1a53-0e5a-5107-8877-c213d6d0fccf")
+		(property "Reference" "#PWR016"
 			(at 66.04 165.1 0)
 			(hide yes)
 			(effects
@@ -7989,12 +8571,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "669d32ab-55f7-54e7-8bd8-e745e886c45a")
+			(uuid "08fcee30-4d8c-53bc-9c65-28ece2399ec3")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR014")
+					(reference "#PWR016")
 					(unit 1)
 				)
 			)
@@ -8192,8 +8774,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "333ada34-4b1a-545f-a8dc-0d9e154b3e4d")
-		(property "Reference" "#PWR015"
+		(uuid "c92f0719-6734-5ef5-9891-b914306affa0")
+		(property "Reference" "#PWR017"
 			(at 88.9 165.1 0)
 			(hide yes)
 			(effects
@@ -8238,12 +8820,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "60519edf-4f5f-56bc-aec6-ea915e37a56b")
+			(uuid "b33f360b-686c-5762-bb7d-1ddc77ba528c")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR015")
+					(reference "#PWR017")
 					(unit 1)
 				)
 			)
@@ -8330,8 +8912,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "720d1a53-0e5a-5107-8877-c213d6d0fccf")
-		(property "Reference" "#PWR016"
+		(uuid "8a25ad7c-ef81-5a64-af33-d559ae8d01b5")
+		(property "Reference" "#PWR018"
 			(at 116.84 165.1 0)
 			(hide yes)
 			(effects
@@ -8376,12 +8958,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "08fcee30-4d8c-53bc-9c65-28ece2399ec3")
+			(uuid "0381a406-1a2f-50dd-a7e0-252b133602e2")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR016")
+					(reference "#PWR018")
 					(unit 1)
 				)
 			)
@@ -8401,8 +8983,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "c92f0719-6734-5ef5-9891-b914306affa0")
-		(property "Reference" "#PWR017"
+		(uuid "b8a9efaf-b7d4-5836-8f3f-f681215578c8")
+		(property "Reference" "#PWR019"
 			(at 127 154.94 0)
 			(hide yes)
 			(effects
@@ -8447,12 +9029,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "b33f360b-686c-5762-bb7d-1ddc77ba528c")
+			(uuid "8e9a8cde-6651-500f-9f77-ca206ed771a2")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR017")
+					(reference "#PWR019")
 					(unit 1)
 				)
 			)
@@ -8541,8 +9123,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "8a25ad7c-ef81-5a64-af33-d559ae8d01b5")
-		(property "Reference" "#PWR018"
+		(uuid "8889bf4c-70f1-5ccf-a0e0-dfd9e35abedd")
+		(property "Reference" "#PWR020"
 			(at 137.16 165.1 0)
 			(hide yes)
 			(effects
@@ -8587,12 +9169,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "0381a406-1a2f-50dd-a7e0-252b133602e2")
+			(uuid "333198b5-5e09-524a-bae3-13478c55c5d6")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR018")
+					(reference "#PWR020")
 					(unit 1)
 				)
 			)
@@ -8679,8 +9261,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "b8a9efaf-b7d4-5836-8f3f-f681215578c8")
-		(property "Reference" "#PWR019"
+		(uuid "dc010cb7-ebfd-5baa-8679-3b3bd6123b03")
+		(property "Reference" "#PWR021"
 			(at 167.64 154.94 0)
 			(hide yes)
 			(effects
@@ -8725,12 +9307,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "8e9a8cde-6651-500f-9f77-ca206ed771a2")
+			(uuid "1a994f24-dfba-512a-9d7d-74cf3a30cb38")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR019")
+					(reference "#PWR021")
 					(unit 1)
 				)
 			)
@@ -8819,8 +9401,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "8889bf4c-70f1-5ccf-a0e0-dfd9e35abedd")
-		(property "Reference" "#PWR020"
+		(uuid "cbd368f0-a841-52ca-a03a-6fb6c294fd7b")
+		(property "Reference" "#PWR022"
 			(at 175.26 165.1 0)
 			(hide yes)
 			(effects
@@ -8865,12 +9447,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "333198b5-5e09-524a-bae3-13478c55c5d6")
+			(uuid "709446dd-6a4c-53ad-a090-38ebe278dbe7")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR020")
+					(reference "#PWR022")
 					(unit 1)
 				)
 			)
@@ -9203,8 +9785,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "dc010cb7-ebfd-5baa-8679-3b3bd6123b03")
-		(property "Reference" "#PWR021"
+		(uuid "6b5e5ad1-0ff8-5ca6-8078-bcf58d73758a")
+		(property "Reference" "#PWR023"
 			(at 200.66 170.18 0)
 			(hide yes)
 			(effects
@@ -9249,12 +9831,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "1a994f24-dfba-512a-9d7d-74cf3a30cb38")
+			(uuid "7f0f7499-7a98-5c69-b701-9f1d483584f4")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR021")
+					(reference "#PWR023")
 					(unit 1)
 				)
 			)
@@ -9440,8 +10022,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "cbd368f0-a841-52ca-a03a-6fb6c294fd7b")
-		(property "Reference" "#PWR022"
+		(uuid "e5fda10d-5ce9-56f5-927d-76462db3257a")
+		(property "Reference" "#PWR024"
 			(at 226.06 170.18 0)
 			(hide yes)
 			(effects
@@ -9486,12 +10068,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "709446dd-6a4c-53ad-a090-38ebe278dbe7")
+			(uuid "accce36b-a7cd-523e-8a84-e76b362dc6ae")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR022")
+					(reference "#PWR024")
 					(unit 1)
 				)
 			)
@@ -9505,8 +10087,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "6b5e5ad1-0ff8-5ca6-8078-bcf58d73758a")
-		(property "Reference" "#PWR023"
+		(uuid "2b5c160a-796f-5ef1-bb53-c4142a319f54")
+		(property "Reference" "#PWR025"
 			(at 200.66 182.88 0)
 			(hide yes)
 			(effects
@@ -9551,12 +10133,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "7f0f7499-7a98-5c69-b701-9f1d483584f4")
+			(uuid "76dc19cb-7e68-504a-9988-284593024011")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR023")
+					(reference "#PWR025")
 					(unit 1)
 				)
 			)
@@ -9756,8 +10338,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "e5fda10d-5ce9-56f5-927d-76462db3257a")
-		(property "Reference" "#PWR024"
+		(uuid "e50cc9b6-4553-5005-9402-a2b6ac88686f")
+		(property "Reference" "#PWR026"
 			(at 231.14 157.48 0)
 			(hide yes)
 			(effects
@@ -9802,12 +10384,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "accce36b-a7cd-523e-8a84-e76b362dc6ae")
+			(uuid "aa6d54f8-38aa-58ec-a5dd-9e8c6fe668f8")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR024")
+					(reference "#PWR026")
 					(unit 1)
 				)
 			)
@@ -10229,8 +10811,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "2b5c160a-796f-5ef1-bb53-c4142a319f54")
-		(property "Reference" "#PWR025"
+		(uuid "8b3e1e7c-c305-5f1c-b882-e8fa152c66c3")
+		(property "Reference" "#PWR027"
 			(at 96.52 220.98 0)
 			(hide yes)
 			(effects
@@ -10275,12 +10857,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "76dc19cb-7e68-504a-9988-284593024011")
+			(uuid "ad5185a4-b933-5cb1-b2ef-b64959d9de3c")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR025")
+					(reference "#PWR027")
 					(unit 1)
 				)
 			)
@@ -11105,8 +11687,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "e50cc9b6-4553-5005-9402-a2b6ac88686f")
-		(property "Reference" "#PWR026"
+		(uuid "b295d3fe-ba61-5c86-9f2f-adbd361ced93")
+		(property "Reference" "#PWR028"
 			(at 96.52 264.16 0)
 			(hide yes)
 			(effects
@@ -11151,12 +11733,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "aa6d54f8-38aa-58ec-a5dd-9e8c6fe668f8")
+			(uuid "b48f23b3-d812-5e33-a579-e31519b5f41c")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR026")
+					(reference "#PWR028")
 					(unit 1)
 				)
 			)
@@ -12313,8 +12895,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "8b3e1e7c-c305-5f1c-b882-e8fa152c66c3")
-		(property "Reference" "#PWR027"
+		(uuid "6cab86d6-1e0a-5b54-9645-f34080828eb3")
+		(property "Reference" "#PWR029"
 			(at 350.52 152.4 0)
 			(hide yes)
 			(effects
@@ -12359,12 +12941,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "ad5185a4-b933-5cb1-b2ef-b64959d9de3c")
+			(uuid "a4556c54-82d6-5a1b-aeb8-1157f2b01a4f")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR027")
+					(reference "#PWR029")
 					(unit 1)
 				)
 			)
@@ -12378,8 +12960,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "b295d3fe-ba61-5c86-9f2f-adbd361ced93")
-		(property "Reference" "#PWR028"
+		(uuid "531ba8ed-ac4b-5c7e-8566-6735751cc2e9")
+		(property "Reference" "#PWR030"
 			(at 350.52 177.8 0)
 			(hide yes)
 			(effects
@@ -12424,12 +13006,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "b48f23b3-d812-5e33-a579-e31519b5f41c")
+			(uuid "8fdac425-3bbc-514c-9a07-124343ba4553")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR028")
+					(reference "#PWR030")
 					(unit 1)
 				)
 			)
@@ -12716,8 +13298,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "6cab86d6-1e0a-5b54-9645-f34080828eb3")
-		(property "Reference" "#PWR029"
+		(uuid "4e0324be-5413-5719-89b4-b620fa34c1ad")
+		(property "Reference" "#PWR031"
 			(at 304.8 223.52 0)
 			(hide yes)
 			(effects
@@ -12762,12 +13344,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "a4556c54-82d6-5a1b-aeb8-1157f2b01a4f")
+			(uuid "f76dc960-8ff2-5044-abb0-dac972dadc2b")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR029")
+					(reference "#PWR031")
 					(unit 1)
 				)
 			)
@@ -12781,8 +13363,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "531ba8ed-ac4b-5c7e-8566-6735751cc2e9")
-		(property "Reference" "#PWR030"
+		(uuid "00ea63c0-119e-505c-aaa1-abe3f29689fb")
+		(property "Reference" "#PWR032"
 			(at 304.8 246.38 0)
 			(hide yes)
 			(effects
@@ -12827,12 +13409,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "8fdac425-3bbc-514c-9a07-124343ba4553")
+			(uuid "47bf1e0b-a394-551c-bd7a-717a77b357a2")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR030")
+					(reference "#PWR032")
 					(unit 1)
 				)
 			)
@@ -12924,8 +13506,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "4e0324be-5413-5719-89b4-b620fa34c1ad")
-		(property "Reference" "#PWR031"
+		(uuid "8c71e990-f7f9-5a46-9085-ff16d53b384f")
+		(property "Reference" "#PWR033"
 			(at 292.1 241.3 0)
 			(hide yes)
 			(effects
@@ -12970,12 +13552,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "f76dc960-8ff2-5044-abb0-dac972dadc2b")
+			(uuid "3dc09562-6f38-553e-a9f3-35869779ea26")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR031")
+					(reference "#PWR033")
 					(unit 1)
 				)
 			)
@@ -13184,8 +13766,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "00ea63c0-119e-505c-aaa1-abe3f29689fb")
-		(property "Reference" "#PWR032"
+		(uuid "9fe3c891-1fea-5df9-bbea-f75ea0f0aa13")
+		(property "Reference" "#PWR034"
 			(at 358.14 223.52 0)
 			(hide yes)
 			(effects
@@ -13230,12 +13812,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "47bf1e0b-a394-551c-bd7a-717a77b357a2")
+			(uuid "4c17715f-4509-575e-ade2-0b79af031078")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR032")
+					(reference "#PWR034")
 					(unit 1)
 				)
 			)
@@ -13348,8 +13930,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "8c71e990-f7f9-5a46-9085-ff16d53b384f")
-		(property "Reference" "#PWR033"
+		(uuid "144eae57-477b-5717-a8ef-429212ff3b68")
+		(property "Reference" "#PWR035"
 			(at 358.14 232.41 0)
 			(hide yes)
 			(effects
@@ -13394,12 +13976,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "3dc09562-6f38-553e-a9f3-35869779ea26")
+			(uuid "d72ea1a6-e910-58da-a3fe-4702ebf2c3b7")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR033")
+					(reference "#PWR035")
 					(unit 1)
 				)
 			)
@@ -13512,8 +14094,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "9fe3c891-1fea-5df9-bbea-f75ea0f0aa13")
-		(property "Reference" "#PWR034"
+		(uuid "75ced991-b062-5968-80b0-31fea7b6fd40")
+		(property "Reference" "#PWR036"
 			(at 358.14 241.3 0)
 			(hide yes)
 			(effects
@@ -13558,12 +14140,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "4c17715f-4509-575e-ade2-0b79af031078")
+			(uuid "922334e2-e250-5930-abcc-a19aa9ba4916")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR034")
+					(reference "#PWR036")
 					(unit 1)
 				)
 			)
@@ -13687,8 +14269,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "144eae57-477b-5717-a8ef-429212ff3b68")
-		(property "Reference" "#PWR035"
+		(uuid "38f1ab48-11d4-57fe-ba19-a7bb2621af3d")
+		(property "Reference" "#PWR037"
 			(at 391.16 226.06 0)
 			(hide yes)
 			(effects
@@ -13733,12 +14315,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "d72ea1a6-e910-58da-a3fe-4702ebf2c3b7")
+			(uuid "4f754909-192a-52e9-a849-13ba0705ac2a")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR035")
+					(reference "#PWR037")
 					(unit 1)
 				)
 			)
@@ -13918,8 +14500,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "75ced991-b062-5968-80b0-31fea7b6fd40")
-		(property "Reference" "#PWR036"
+		(uuid "a2df5a6c-8d8f-5273-9af7-b7fe77c032ff")
+		(property "Reference" "#PWR038"
 			(at 383.54 238.76 0)
 			(hide yes)
 			(effects
@@ -13964,12 +14546,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "922334e2-e250-5930-abcc-a19aa9ba4916")
+			(uuid "f9c8f982-4cea-5d59-8505-14fb97b2a4a1")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR036")
+					(reference "#PWR038")
 					(unit 1)
 				)
 			)
@@ -13983,8 +14565,8 @@
 		(in_bom no)
 		(on_board no)
 		(dnp no)
-		(uuid "38f1ab48-11d4-57fe-ba19-a7bb2621af3d")
-		(property "Reference" "#PWR037"
+		(uuid "ee82adad-6514-5e12-af38-6757b59c4dea")
+		(property "Reference" "#PWR039"
 			(at 383.54 248.92 0)
 			(hide yes)
 			(effects
@@ -14029,12 +14611,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "4f754909-192a-52e9-a849-13ba0705ac2a")
+			(uuid "dd19df9f-3b77-58c6-8cff-edc94fc110df")
 		)
 		(instances
 			(project "ionos_maximus"
 				(path "/da0ecf70-6572-5285-ad04-d8f8d94c2ba6"
-					(reference "#PWR037")
+					(reference "#PWR039")
 					(unit 1)
 				)
 			)
