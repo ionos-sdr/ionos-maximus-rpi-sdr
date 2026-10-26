@@ -85,7 +85,7 @@ Mode B risk: PIOLib reaches the RP1 PIO from Linux through a firmware mailbox, w
 
 | Signal | Mezzanine | RPi [pin] | Notes |
 |---|---|---|---|
-| BOARD_ID_SDA | P200-40 | GPIO2 / SDA1 [3] | Radio-board M24C02; already has 10 kΩ pull-ups on the radio board |
+| BOARD_ID_SDA | P200-40 | GPIO2 / SDA1 [3] | Radio-board M24C02; no SDA/SCL pull-ups on the radio board (only WP), the Pi's own 1.8 kΩ pull-ups on GPIO2/3 serve the bus |
 | BOARD_ID_SCL | P200-39 | GPIO3 / SCL1 [5] | |
 | HAT ID EEPROM | — | GPIO0 / GPIO1 [27 / 28] | HAT's own EEPROM (HAT+ spec), auto-loads the device-tree overlay |
 | VMCU_IN | P201-2 | 5 V [2, 4] → LDO | Dedicated LP5907-3.3 (as on ionos-mini), not the Pi 3V3 rail |

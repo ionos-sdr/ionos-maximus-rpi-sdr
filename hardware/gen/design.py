@@ -49,7 +49,7 @@ PARTS = [
     ('C5', 'C', '100nF/50V/10%', C0402, {'1': 'VMCU_IN', '2': 'GND'}, False, {}),
     ('JP1', 'SJ_Bridged', 'Bridged', SJB, {'1': '3V3_RADIO', '2': '3V3_RB'}, False,
      {'Note': 'board-ID EEPROM supply, P200-1'}),
-    ('R2', 'R', 'NA(0R)', R0402, {'1': '5V0', '2': '5V_RB'}, True, {'Note': 'P200-37 5 V option, not fitted'}),
+    ('R2', 'R', 'NA(0R)', R0402, {'1': '5V0', '2': '5V_RB'}, True, {'Note': 'P200-37 = USB_VBUS on BRD4265B (5V is P200-35), not fitted'}),
     # I/Q SPI link, 22 R at both ends
     ('JP2', 'SJ_Bridged', 'Bridged', SJB, {'1': 'IQ_SCLK_HDR', '2': 'IQ_SCLK_PI'}, False,
      {'Note': 'README SJ1: cut to isolate the Pi'}),

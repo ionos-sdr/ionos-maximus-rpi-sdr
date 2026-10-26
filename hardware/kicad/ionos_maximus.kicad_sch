@@ -7394,7 +7394,7 @@
 		)
 		(uuid "2d8a4de7-915c-5145-887c-2b2524baa51f")
 	)
-	(text "pull-ups 1k8 on the Pi, 10k on the radio board."
+	(text "pull-ups: 1k8 on the Pi, none on the radio board (only WP)."
 		(exclude_from_sim no)
 		(at 284.48 121.92 0)
 		(effects
@@ -7403,7 +7403,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "6e8d025d-60c9-5d65-be85-7df4ffa2b4aa")
+		(uuid "e476cf83-d929-51f0-99df-f89ab697a8fc")
 	)
 	(text "P200-36 USB_VREG: radio-board output, never drive."
 		(exclude_from_sim no)
@@ -9605,7 +9605,7 @@
 				)
 			)
 		)
-		(property "Description" "P200-37 5 V option, not fitted"
+		(property "Description" "P200-37 = USB_VBUS on BRD4265B (5V is P200-35), not fitted"
 			(at 210.82 182.88 0)
 			(hide yes)
 			(effects

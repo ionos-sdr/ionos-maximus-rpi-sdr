@@ -470,7 +470,7 @@ def build():
     sh.block('P200 - radio board header', 'supply, reset, board-ID EEPROM (I2C)', 279.4, 15.24, 405.13, 127.0)
     draw_mezz(sh, 'P200', 321.31, 38.1, {'1': to_power('3V3_RB'), '2': to_power('GND'), '38': gnd_crossing,
                                           '40': long_label('I2C_SDA', 7.62)})
-    sh.text('Board-ID EEPROM (M24C02, radio board) on Pi I2C1;\npull-ups 1k8 on the Pi, 10k on the radio board.\n'
+    sh.text('Board-ID EEPROM (M24C02, radio board) on Pi I2C1;\npull-ups: 1k8 on the Pi, none on the radio board (only WP).\n'
             'P200-36 USB_VREG: radio-board output, never drive.', (284.48, 124.46))
     # ---- block D: radio supply
     sh.block('Radio supply', 'Pi 5 V -> FB1 -> LP5907 -> 3V3_RADIO -> R1 0R -> VMCU_IN (P201-2)', 15.24, 132.08, 274.32, 198.12)
