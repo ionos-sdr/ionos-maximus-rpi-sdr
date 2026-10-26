@@ -6,7 +6,7 @@ A carrier between a Raspberry Pi and a Silicon Labs radio board (BRD4265B, EFR32
 
 Schematic: [ionos_maximus_schematic.pdf](ionos_maximus_schematic.pdf).
 
-<p align="center"><img src="../docs/img/rev-a_stack_iso.png" width="80%" alt="rev A on a Raspberry Pi 3 with radio board and SMA antenna"></p>
+<p align="center"><img src="../docs/img/rev-a_stack_iso.png" width="80%" alt="rev A on a Raspberry Pi 4B with radio board and SMA antenna"></p>
 
 | Top | Bottom |
 | --- | --- |
@@ -16,7 +16,12 @@ Schematic: [ionos_maximus_schematic.pdf](ionos_maximus_schematic.pdf).
 | --- | --- |
 | <img src="../docs/img/rev-a_stack_back.png" alt="stack, back"> | <img src="../docs/img/rev-a_stack_side.png" alt="stack, side"> |
 
-The stack renders are for orientation only. The Raspberry Pi 3 and the radio board are built from KiCad library parts (40-pin header, USB, RJ45, HDMI, jack, SoC, QFN, SMA) at their drawing positions. They are not vendor models. The radio-board outline and the position of the SMA connector are assumptions, see "Mechanics". Context renders: `gen/render_context.py`.
+The stack renders are for orientation only.
+
+- **Raspberry Pi 4B model:** from the [FreeCAD parts library](https://github.com/FreeCAD/FreeCAD-library) (CC-BY 3.0). It is downloaded at render time and is not stored in this repo. The header, holes and outline are the same on the Pi 3B and Pi 5.
+- **Radio board:** a stand-in built from KiCad library parts (CC-BY-SA). Its outline and the SMA position are assumptions, see "Mechanics".
+
+The renders are made by `gen/render_context.py`.
 
 ## Mechanics
 
@@ -63,7 +68,7 @@ gen/gen_sch.py         writes kicad/ionos_maximus.kicad_sch + .kicad_sym
 gen/mkfp.py            builds kicad/ionos_maximus.pretty from ionos-sdr-mini and RPi_ISM
 gen/gen_pcb.py         placement, outline (from RPi_ISM), slot keepout, GND pours (KiCad python)
 gen/check_pinmap.py    independent check of the netlist against the README pin map
-gen/render_context.py  3D context renders (Pi 3 + radio board + antenna stand-ins)
+gen/render_context.py  3D context renders (Pi 4B FreeCAD model + radio board stand-in + antenna)
 kicad/                 KiCad 10 project, JLC 2-layer 1 oz rules (.kicad_dru from RPi_ISM)
 kicad/3dmodels/        STEP models of every fitted part, referenced via ${KIPRJMOD}
 ```

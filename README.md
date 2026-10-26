@@ -141,7 +141,7 @@ Details in [docs/measurement-plan.md](docs/measurement-plan.md).
 
 ## Hardware
 
-<p align="center"><img src="docs/img/rev-a_stack_iso.png" width="70%" alt="ionos-maximus rev A on a Raspberry Pi 3 with an EFR32FG23 radio board and SMA antenna"></p>
+<p align="center"><img src="docs/img/rev-a_stack_iso.png" width="70%" alt="ionos-maximus rev A on a Raspberry Pi 4B with an EFR32FG23 radio board and SMA antenna"></p>
 
 KiCad 10 project, generators and checks are in [`hardware/`](hardware/README.md).
 
@@ -151,7 +151,7 @@ Rev A status:
 - Board: 2 layers, routed. DRC 0 errors, 0 unconnected, schematic parity 0.
 - Not fabricated yet.
 
-The Pi and the radio board in the render are stand-ins built from KiCad library parts.
+In the render, the Raspberry Pi 4B model comes from the [FreeCAD parts library](https://github.com/FreeCAD/FreeCAD-library) (CC-BY 3.0). The radio board is a stand-in built from KiCad library parts.
 
 ## Licensing
 

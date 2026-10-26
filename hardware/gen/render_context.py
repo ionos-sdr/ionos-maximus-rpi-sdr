@@ -1,13 +1,17 @@
-"""Realistic context renders: the adapter on a Raspberry Pi 3B, BRD4265B plugged in, SMA whip antenna.
+"""Context renders: the adapter on a Raspberry Pi 4B, BRD4265B plugged in, SMA whip antenna.
 
-No vendor CAD is used (none is published under a licence that allows this repo): the Pi and the radio board are
-built here as KiCad boards from KiCad's own library footprints and 3D models (CC-BY-SA), at the positions of the
-Raspberry Pi 3B mechanical drawing and the assumed BRD4265B outline. Both are built directly in the adapter's
-coordinate frame, exported to STEP and attached to a copy of the adapter as board-only 3D models.
+Raspberry Pi 4B: STEP model from the FreeCAD parts library (github.com/FreeCAD/FreeCAD-library,
+Computing/SingleBoardComputers/Raspberry/Raspberry Pi 4B), licensed CC-BY 3.0. It is downloaded into out/context
+on first run and is not stored in this repository. Header, holes and outline match the Pi 3B / 5 as well.
+Radio board: built here as a KiCad board from KiCad's library footprints and 3D models (CC-BY-SA) on the assumed
+BRD4265B outline (no vendor CAD is available), exported to STEP and attached to a copy of the adapter.
 Run with KiCad's Python:  python.exe render_context.py
 """
-import os, math, subprocess
+import os, math, subprocess, urllib.request
 import pcbnew
+
+PI_URL = ('https://raw.githubusercontent.com/FreeCAD/FreeCAD-library/master/Computing/SingleBoardComputers/'
+          'Raspberry/Raspberry%20Pi%204B/Raspberry%20Pi%204B.step')
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 KDIR = os.path.normpath(os.path.join(HERE, '..', 'kicad'))
@@ -16,32 +20,14 @@ CLI = r'C:\Program Files\KiCad\10.0\bin\kicad-cli.exe'
 FPL = r'C:\Program Files\KiCad\10.0\share\kicad\footprints'
 IN = 25.4 / 10                       # VRML unit
 
-# ---- Raspberry Pi 3B, mechanical drawing frame: px along the header edge (0..85), py from the header edge (0..56).
+# ---- Raspberry Pi, mechanical drawing frame: px along the header edge (0..85), py from the header edge (0..56).
 # GPIO pin 1 at (8.37, 4.77); J1 hole of RPi pin 1 on the adapter is at (5.253, -2.457).
+# The FreeCAD STEP is Y-up: x = px, z = py - 56, y = height above the Pi PCB top.
+# Rotating it +90 deg about X gives board coords (px, py - 56); a footprint at orientation 90 maps that to
+# (py - 56, -px), so the footprint sits at (P1X - 4.77 + 56, P1Y + 8.37).
 P1X, P1Y = 5.253, -2.457
-PI_TOP = -2.5                        # adapter bottom rests on the 2.5 mm header body
-PI_T = 1.4
-
-
-def pi_xy(px, py):
-    return P1X + (py - 4.77), P1Y - (px - 8.37)
-
-
-# (footprint, px, py, rot in the Pi frame, side)
-PI_PARTS = [
-    ('Connector_PinHeader_2.54mm:PinHeader_2x20_P2.54mm_Vertical', 8.37, 4.77, 90, 'F'),
-    ('Connector_USB:USB_A_Molex_67643_Horizontal', 79.0, 9.0, 0, 'F'),
-    ('Connector_USB:USB_A_Molex_67643_Horizontal', 79.0, 27.0, 0, 'F'),
-    ('Connector_RJ:RJ45_Amphenol_RJHSE538X', 76.0, 45.75, 0, 'F'),
-    ('Connector_Video:HDMI_A_Molex_208658-1001_Horizontal', 32.0, 52.0, 0, 'F'),
-    ('Connector_USB:USB_Micro-B_Molex_47346-0001', 10.6, 54.0, 0, 'F'),
-    ('Connector_Audio:Jack_3.5mm_CUI_SJ1-3523N_Horizontal', 53.5, 50.0, 0, 'F'),
-    ('Package_BGA:BGA-144_13.0x13.0mm_Layout12x12_P1.0mm', 30.0, 31.0, 0, 'F'),
-    ('Package_DFN_QFN:QFN-64-1EP_9x9mm_P0.5mm_EP4.1x4.1mm', 59.0, 31.0, 0, 'F'),
-    ('Connector_Card:microSD_HC_Hirose_DM3D-SF', 6.0, 28.0, 90, 'B'),
-]
-STACKED = {'Connector_USB:USB_A_Molex_67643_Horizontal': 7.2}   # second port of each USB stack, mm above the first
-PI_HOLES = [(3.5, 3.5), (61.5, 3.5), (3.5, 52.5), (61.5, 52.5)]
+PI_POS = (P1X - 4.77 + 56.0, P1Y + 8.37)
+PI_Z = -1.6 - 2.5                    # Pi PCB top: adapter bottom rests on the 2.5 mm header body
 
 # ---- radio board stand-in (VERIFY on a real BRD4265B): 32.5 mm along the connectors, 11 mm beyond P200,
 # 5 mm beyond P201; SMA on the P200 end; sockets on its bottom side.
@@ -116,16 +102,7 @@ def build(path, corners, r, parts, holes, color):
     for x, y, d in holes:
         hole(b, x, y, d)
     for p in parts:
-        fp = place(b, *p)
-        dz = STACKED.get(p[0])
-        if dz:
-            m0 = fp.Models()[0]
-            m = pcbnew.FP_3DMODEL()
-            m.m_Filename = m0.m_Filename
-            m.m_Offset = pcbnew.VECTOR3D(m0.m_Offset.x, m0.m_Offset.y, m0.m_Offset.z + dz)
-            m.m_Rotation = m0.m_Rotation
-            m.m_Scale = m0.m_Scale
-            fp.Models().append(m)
+        place(b, *p)
     b.Save(path)
 
 
@@ -171,28 +148,32 @@ def antenna(path):
 
 def main():
     os.makedirs(OUT, exist_ok=True)
-    # Raspberry Pi 3B in the adapter frame
-    c = [pi_xy(*p) for p in ((0, 0), (85, 0), (85, 56), (0, 56))]
-    parts = [(f, *pi_xy(px, py), rot + 90, side) for f, px, py, rot, side in PI_PARTS]
-    holes = [(*pi_xy(px, py), 2.75) for px, py in PI_HOLES]
-    pi = os.path.join(OUT, 'rpi3b.kicad_pcb')
-    build(pi, c, 3.0, parts, holes, '#1E7A3A')
+    pi_step = os.path.join(OUT, 'pi4b.step')
+    if not os.path.exists(pi_step) or os.path.getsize(pi_step) < 1e6:
+        print('downloading', PI_URL)
+        urllib.request.urlretrieve(PI_URL, pi_step)
     rb = os.path.join(OUT, 'brd4265b.kicad_pcb')
     build(rb, [(RB[0], RB[1]), (RB[2], RB[1]), (RB[2], RB[3]), (RB[0], RB[3])], 1.0, RB_PARTS, [], '#14191F')
-    step(pi, os.path.join(OUT, 'rpi3b.step'))
     step(rb, os.path.join(OUT, 'brd4265b.step'))
     antenna(os.path.join(OUT, 'antenna.wrl'))
     # adapter copy with the context models
     b = pcbnew.LoadBoard(os.path.join(KDIR, 'ionos_maximus.kicad_pcb'))
-    fp = pcbnew.FOOTPRINT(b)
-    fp.SetReference('CTX1'); fp.Reference().SetVisible(False); fp.Value().SetVisible(False)
-    fp.SetBoardOnly(True); fp.SetExcludedFromBOM(True); fp.SetExcludedFromPosFiles(True)
-    for name, z in (('rpi3b.step', PI_TOP - PI_T), ('brd4265b.step', RB_Z), ('antenna.wrl', 0.0)):
-        m = pcbnew.FP_3DMODEL()
-        m.m_Filename = os.path.join(OUT, name).replace('\\', '/')
-        m.m_Offset = pcbnew.VECTOR3D(0, 0, z)
-        fp.Models().append(m)
-    b.Add(fp)
+
+    def ctx_fp(ref, pos, rot, models):
+        fp = pcbnew.FOOTPRINT(b)
+        fp.SetReference(ref); fp.Reference().SetVisible(False); fp.Value().SetVisible(False)
+        fp.SetBoardOnly(True); fp.SetExcludedFromBOM(True); fp.SetExcludedFromPosFiles(True)
+        for name, z, mrot in models:
+            m = pcbnew.FP_3DMODEL()
+            m.m_Filename = os.path.join(OUT, name).replace('\\', '/')
+            m.m_Offset = pcbnew.VECTOR3D(0, 0, z)
+            m.m_Rotation = pcbnew.VECTOR3D(*mrot)
+            fp.Models().append(m)
+        b.Add(fp)
+        fp.SetPosition(v(*pos)); fp.SetOrientationDegrees(rot)
+
+    ctx_fp('CTX1', (0, 0), 0, [('brd4265b.step', RB_Z, (0, 0, 0)), ('antenna.wrl', 0.0, (0, 0, 0))])
+    ctx_fp('CTX2', PI_POS, 90, [('pi4b.step', PI_Z, (-90, 0, 0))])   # KiCad applies the negated angle
     ctx = os.path.join(KDIR, '_context.kicad_pcb')       # next to the project, so ${KIPRJMOD} models resolve
     b.Save(ctx)
     print('built', ctx)
