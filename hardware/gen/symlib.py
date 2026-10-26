@@ -49,7 +49,7 @@ def power_symbol(name, base, desc=''):
     return s
 
 def eeprom():
-    """CAT24C32WI-GT3, SOIC-8 (A0 A1 A2 VSS SDA SCL WP VCC) - pinout as in the RPi HAT guide part."""
+    """CAT24C32YI-GT3, TSSOP-8 (A0 A1 A2 VSS SDA SCL WP VCC) - pinout as in the RPi HAT guide part."""
     pins = [('1','A0','input',-10.16,2.54,0),('2','A1','input',-10.16,0,0),('3','A2','input',-10.16,-2.54,0),
             ('4','VSS','power_in',0,-10.16,90),('5','SDA','bidirectional',10.16,2.54,180),
             ('6','SCL','input',10.16,0,180),('7','WP','input',10.16,-2.54,180),('8','VCC','power_in',0,10.16,270)]
@@ -63,8 +63,8 @@ def eeprom():
         e = ['effects', ['font', ['size', '1.27', '1.27']]] + ([['hide', 'yes']] if hide else [])
         return ['property', Q(k), Q(v), ['at', '0', str(y), '0'], e]
     return ['symbol', Q('CAT24C32'), ['exclude_from_sim', 'no'], ['in_bom', 'yes'], ['on_board', 'yes'],
-            prop('Reference', 'U', 9.5), prop('Value', 'CAT24C32WI-GT3', -9.5),
-            prop('Footprint', 'Package_SO:SOIC-8_3.9x4.9mm_P1.27mm', 0, True),
+            prop('Reference', 'U', 9.5), prop('Value', 'CAT24C32YI-GT3', -9.5),
+            prop('Footprint', 'Package_SO:TSSOP-8_4.4x3mm_P0.65mm', 0, True),
             prop('Datasheet', 'https://www.onsemi.com/pdf/datasheet/cat24c32-d.pdf', 0, True),
             prop('Description', 'I2C EEPROM 32 kbit, 16-bit addressing (RPi HAT ID EEPROM)', 0, True),
             gfx, body, ['embedded_fonts', 'no']]

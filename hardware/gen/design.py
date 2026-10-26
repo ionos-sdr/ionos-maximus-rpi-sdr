@@ -15,7 +15,7 @@ def rpi_to_j1(p):
 
 
 # RPi header pin -> net (pins not listed get a no-connect)
-RPI = {1: '3V3_PI', 17: '3V3_PI', 2: '5V0', 4: '5V0',
+RPI = {17: '3V3_PI', 2: '5V0', 4: '5V0',
        6: 'GND', 9: 'GND', 14: 'GND', 20: 'GND', 25: 'GND', 30: 'GND',
        3: 'I2C_SDA', 5: 'I2C_SCL', 8: 'CMD_PI', 13: 'SWO_PI', 15: 'RESETn_PI', 16: 'SWCLK_PI',
        18: 'SWDIO_PI', 19: 'IQ_MOSI_PI', 21: 'IQ_DATA_PI', 22: 'DRDY_PI', 23: 'IQ_SCLK_HDR',
@@ -72,15 +72,13 @@ PARTS = [
     ('JP10', 'SJ_Bridged', 'Bridged', SJB, {'1': 'I2C_SDA', '2': 'I2C_SDA_RB'}, False, {}),
     ('R18', 'R', 'NA(4.7k)', R0402, {'1': 'I2C_SCL_RB', '2': '3V3_RB'}, True, {'Note': 'Pi has 1k8 on GPIO3'}),
     ('R19', 'R', 'NA(4.7k)', R0402, {'1': 'I2C_SDA_RB', '2': '3V3_RB'}, True, {'Note': 'Pi has 1k8 on GPIO2'}),
-    # SWD from the Pi (OpenOCD linuxgpiod), Tag-Connect for an external probe
+    # SWD from the Pi (OpenOCD linuxgpiod); cut points let an external probe take over
     ('JP4', 'SJ_Bridged', 'Bridged', SJB, {'1': 'SWDIO_PI', '2': 'SWDIO_RB'}, False, {}),
     ('JP5', 'SJ_Bridged', 'Bridged', SJB, {'1': 'SWCLK_PI', '2': 'SWCLK_RB'}, False, {}),
     ('JP6', 'SJ_Bridged', 'Bridged', SJB, {'1': 'SWO_PI', '2': 'SWO_RB'}, False, {}),
     ('JP7', 'SJ_Bridged', 'Bridged', SJB, {'1': 'RESETn_PI', '2': 'RESETn_RB'}, False, {'Note': 'drive open-drain only'}),
-    ('J2', 'TC2030', 'NA(TC2030-NL)', 'Connector:Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical',
-     {'1': 'VMCU_IN', '2': 'SWDIO_RB', '3': 'RESETn_RB', '4': 'SWCLK_RB', '5': 'GND', '6': 'SWO_RB'}, True, {}),
     # HAT ID EEPROM (RPi HAT design guide: CAT24C32, 3.9k pull-ups, WP 1k pull-up + jumper)
-    ('U2', 'CAT24C32', 'CAT24C32WI-GT3', 'Package_SO:SOIC-8_3.9x4.9mm_P1.27mm',
+    ('U2', 'CAT24C32', 'CAT24C32YI-GT3', 'Package_SO:TSSOP-8_4.4x3mm_P0.65mm',
      {'1': 'GND', '2': 'GND', '3': 'GND', '4': 'GND', '5': 'ID_SD', '6': 'ID_SC', '7': 'EE_WP', '8': '3V3_PI'}, False, {}),
     ('C6', 'C', '100nF/50V/10%', C0402, {'1': '3V3_PI', '2': 'GND'}, False, {}),
     ('R15', 'R', '3.9k', R0402, {'1': 'ID_SD', '2': '3V3_PI'}, False, {}),

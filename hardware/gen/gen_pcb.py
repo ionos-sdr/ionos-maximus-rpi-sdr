@@ -32,10 +32,7 @@ PLACE = {
     # top strip, radio side: series parts right above the P201 outer row, one per pin
     'R13': (p201x(7), -34.4, 90), 'R11': (p201x(9), -34.4, 90), 'R14': (p201x(11), -34.4, 90),
     'R6': (p201x(13), -34.4, 90), 'R4': (p201x(15), -34.4, 90),
-    'R7': (34.6, -36.4, 0), 'R12': (37.0, -36.4, 0), 'TP1': (39.4, -36.4, 0), 'TP2': (41.4, -36.4, 0),
-    # top strip, left: HAT ID EEPROM (outside the radio-board shadow)
-    'U2': (18.6, -36.3, 0), 'JP8': (24.2, -36.3, 90), 'TP3': (26.6, -36.0, 0),
-    'R15': (10.0, -36.2, 0), 'R16': (10.0, -37.6, 0), 'C6': (12.6, -36.2, 0), 'R17': (12.6, -37.6, 0),
+    'R7': (34.6, -36.4, 0), 'R12': (24.0, -37.6, 0), 'TP1': (39.4, -36.4, 0), 'TP2': (41.4, -36.4, 0),
     # left strip next to J1: Pi-side series parts and the isolation jumpers (README SJ1/SJ2)
     'JP2': (10.4, -31.4, 0), 'R3': (12.9, -31.4, 90), 'JP3': (10.4, -34.0, 0), 'R5': (12.9, -34.0, 90),
     'R8': (10.0, -28.6, 0), 'R10': (12.9, -28.6, 90), 'TP5': (10.0, -26.6, 0),
@@ -46,7 +43,11 @@ PLACE = {
     'C1': (30.2, -19.5, 90), 'FB1': (31.9, -19.5, 0), 'C2': (33.6, -19.5, 90), 'U1': (37.0, -19.5, 0),
     'C3': (40.3, -19.0, 90), 'C4': (41.6, -19.0, 90), 'R1': (p201x(2), -22.6, 90), 'C5': (39.9, -22.6, 90),
     'JP1': (43.6, -17.0, 90), 'TP4': (43.8, -22.4, 0),
-    'R9': (p201x(10), -22.6, 90), 'TP6': (p201x(40), -23.4, 0), 'J2': (22.0, -19.5, 0),
+    'R9': (p201x(10), -22.6, 90), 'TP6': (19.0, -23.2, 0),
+    # middle band, left of the LDO: HAT ID EEPROM (TSSOP-8), keeps the top band free for P201
+    'U2': (16.4, -20.4, 90), 'C6': (15.9, -15.75, 0),
+    'R15': (19.4, -21.0, 90), 'R16': (20.8, -21.0, 90), 'R17': (22.2, -21.0, 90),
+    'JP8': (25.0, -20.6, 90), 'TP3': (25.0, -17.2, 0),
 }
 # radio board outline (verify against a real BRD4265B): 32.5 mm along the connectors,
 # 11 mm beyond P200 and 5 mm beyond P201
@@ -127,6 +128,21 @@ def main(netfile):
     t.SetPosition(vec(XC, RB[1] + 1.0))
     t.SetLayer(pcbnew.Dwgs_User)
     board.Add(t)
+    # keepout around the inner slot (the DSN carries the bare cut-out, no edge clearance)
+    for layer in (pcbnew.F_Cu, pcbnew.B_Cu):
+        k = pcbnew.ZONE(board)
+        k.SetIsRuleArea(True)
+        k.SetDoNotAllowTracks(True)
+        k.SetDoNotAllowVias(True)
+        k.SetDoNotAllowZoneFills(False)
+        k.SetDoNotAllowPads(False)
+        k.SetDoNotAllowFootprints(False)
+        k.SetLayer(layer)
+        ol = k.Outline()
+        ol.NewOutline()
+        for x, y in ((16.2, -15.2), (41.6, -15.2), (41.6, -9.12), (16.2, -9.12)):
+            ol.Append(mm(x), mm(y))
+        board.Add(k)
     # GND pour on both layers over the whole outline
     for layer in (pcbnew.F_Cu, pcbnew.B_Cu):
         z = pcbnew.ZONE(board)

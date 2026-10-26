@@ -69,6 +69,11 @@ class Sheet:
     def nc(self, p):
         self.items.append(['no_connect', ['at', g(p[0]), g(p[1])], ['uuid', uid('nc', p)]])
 
+    def label(self, net, p):
+        """Local net label on a horizontal wire point (names the net between two series parts)."""
+        self.items.append(['label', Q(net), ['at', g(p[0]), g(p[1]), '0'], ['fields_autoplaced', 'yes'],
+                           eff(1.0, justify='left bottom'), ['uuid', uid('ll', net, p)]])
+
     def glabel(self, net, p, right):
         """Global label at p; the label body extends to the right (right=True) or to the left."""
         self.items.append(['global_label', Q(net), ['shape', 'passive'], ['at', g(p[0]), g(p[1]), '0' if right else '180'],
@@ -227,10 +232,12 @@ def gnd_flagged(sh, p, sgn):
     sh.power('GND', e)
 
 
-def to_tp(ref):
+def to_tp(ref, net=None):
     def f(sh, p, sgn):
-        e = (p[0] + sgn * 7.62, p[1])
+        e = (p[0] + sgn * (12.7 if net else 7.62), p[1])
         sh.wire(p, e)
+        if net:
+            sh.label(net, (p[0] + sgn * 1.27 - (3.81 if sgn < 0 else 0), p[1]))
         sh.part(ref, e[0] + sgn * 0.0, e[1], F_TP)
     return f
 
@@ -320,7 +327,7 @@ def draw_jp1(sh, x, y):
     sh.glabel('5V_RB', e2, right=True)
 
 
-def draw_chain(sh, y, x0, left, jp, r_pi, r_rb, right, up=None, down=None, tp=None):
+def draw_chain(sh, y, x0, left, jp, r_pi, r_rb, right, up=None, down=None, tp=None, names=(None, None)):
     """left label -> [JP] -> R_pi -> mid -> [R_rb] -> right label.
     up = (ref, supply): pull-up from the mid node; down = ref: pull-down to GND; tp = test pad ref."""
     xl = x0
@@ -330,9 +337,13 @@ def draw_chain(sh, y, x0, left, jp, r_pi, r_rb, right, up=None, down=None, tp=No
         sh.part(jp, xl + 10.16, y, F_SJ)
         sh.wire((xl, y), sh.pin(jp, '1'))
         pts = [sh.pin(jp, '2')]
-    sh.part(r_pi, xl + 25.4, y, F_R)
+    sh.part(r_pi, xl + 33.02, y, F_R)
     sh.wire(pts[-1], sh.pin(r_pi, '1'))
+    if jp and names[0]:
+        sh.label(names[0], (pts[-1][0] + 1.27, y))
     a = sh.pin(r_pi, '2')
+    if names[1]:
+        sh.label(names[1], (a[0] + 1.27, y))
     if r_rb is None:                              # single series part straight to the radio side label
         mid = [a]
         b = (a[0] + 2.54 + (20.32 if tp else 0), y)
@@ -346,7 +357,7 @@ def draw_chain(sh, y, x0, left, jp, r_pi, r_rb, right, up=None, down=None, tp=No
             sh.wire(a, b)
         sh.glabel(right, b, right=True)
         return
-    sh.part(r_rb, xl + 50.8, y, F_R)
+    sh.part(r_rb, xl + 58.42, y, F_R)
     b = sh.pin(r_rb, '1')
     nodes = []
     if up:
@@ -390,20 +401,6 @@ def draw_swd(sh, X, Y):
         e = (sh.pin(jp, '2')[0] + 5.08, y)
         sh.wire(sh.pin(jp, '2'), e)
         sh.glabel(r, e, right=True)
-    # J2 Tag-Connect TC2030-NL (DNP), radio side of the cut points
-    jx, jy = X + 53.34, Y + 10.16
-    sh.part('J2', jx, jy, ((10.16, -10.16, 'left'), (10.16, 10.16, 'left')))
-    nets = PARTS['J2'][4]
-    v = sh.pin('J2', '1')
-    top = (v[0], v[1] - 2.54)
-    sh.wire(v, top)
-    sh.power('VMCU_IN', top)
-    sh.power('GND', sh.pin('J2', '5'))
-    for num in ('2', '3', '4', '6'):
-        p = sh.pin('J2', num)
-        e = (p[0] + 2.54, p[1])
-        sh.wire(p, e)
-        sh.glabel(nets[num], e, right=True)
 
 
 def draw_cut(sh, y, x, left, jp, right, pull):
@@ -473,13 +470,13 @@ def build():
     sh.block('Raspberry Pi header', 'J1 = Samtec CLH-115 on RPi pins 1-30. Pin number = J1 (socket), [n] = RPi header pin.',
              15.24, 15.24, 134.62, 127.0)
     draw_header(sh, 74.93, 82.55)
-    sh.text('Pi 3V3 (1, 17) feeds only the ID EEPROM. ID_SD / ID_SC: EEPROM + 3.9k only.\n'
+    sh.text('Pi 3V3 (pin 17 only) feeds only the ID EEPROM. ID_SD / ID_SC: EEPROM + 3.9k only.\n'
             'cmdlink: PL011 on GPIO14 (dtoverlay=disable-bt).\nMode A: dtoverlay=spi0-1cs.', (20.32, 124.46))
     # ---- block B: P201
     sh.block('P201 - radio board header', 'I/Q SPI (EUSART), DRDY, cmdlink, SWD, VMCU  [BRD4265B expansion]',
              139.7, 15.24, 274.32, 127.0)
     draw_mezz(sh, 'P201', 194.31, 38.1, {'1': gnd_flagged, '2': to_power('VMCU_IN'), '39': to_power('GND'),
-                                          '40': to_tp('TP6')})
+                                          '40': to_tp('TP6', 'VRF_IN')})
     sh.text('P201-40 VRF_IN unused on BRD4265B (on-board DC-DC\nfeeds PAVDD): test pad only.\n'
             'Pin map = ionos-sdr-mini rev-B3 (validated).', (144.78, 124.46))
     # ---- block C: P200
@@ -504,10 +501,10 @@ def build():
     sh.block('I/Q link', '22 R at both ends (mode A: Pi drives SCLK/CS; mode B: FG23 drives them). JP2/JP3 = README SJ1/SJ2.',
              15.24, 203.2, 274.32, 284.48)
     x0, y0 = 50.8, 226.06
-    draw_chain(sh, y0, x0, 'IQ_CS_HDR', 'JP3', 'R5', 'R6', 'IQ_CS_RB', up=('R7', '3V3_RADIO'))
-    draw_chain(sh, y0 + 10.16, x0, 'IQ_SCLK_HDR', 'JP2', 'R3', 'R4', 'IQ_SCLK_RB')
-    draw_chain(sh, y0 + 20.32, x0, 'IQ_DATA_PI', None, 'R8', 'R9', 'IQ_DATA_RB')
-    draw_chain(sh, y0 + 30.48, x0, 'DRDY_PI', None, 'R10', 'R11', 'DRDY_RB', down='R12', tp='TP1')
+    draw_chain(sh, y0, x0, 'IQ_CS_HDR', 'JP3', 'R5', 'R6', 'IQ_CS_RB', up=('R7', '3V3_RADIO'), names=('IQ_CS_PI', 'IQ_CS'))
+    draw_chain(sh, y0 + 10.16, x0, 'IQ_SCLK_HDR', 'JP2', 'R3', 'R4', 'IQ_SCLK_RB', names=('IQ_SCLK_PI', 'IQ_SCLK'))
+    draw_chain(sh, y0 + 20.32, x0, 'IQ_DATA_PI', None, 'R8', 'R9', 'IQ_DATA_RB', names=(None, 'IQ_DATA'))
+    draw_chain(sh, y0 + 30.48, x0, 'DRDY_PI', None, 'R10', 'R11', 'DRDY_RB', down='R12', tp='TP1', names=(None, 'DRDY'))
     x1 = 165.1
     draw_chain(sh, y0, x1, 'IQ_MOSI_PI', None, 'R13', None, 'IQ_MOSI_RB')
     draw_chain(sh, y0 + 15.24, x1, 'CMD_PI', None, 'R14', None, 'CMD_RB', tp='TP2')
@@ -515,7 +512,7 @@ def build():
     # ---- block F: SWD
     sh.block('SWD cut points', 'OpenOCD / pyOCD linuxgpiod from the Pi', 279.4, 132.08, 405.13, 198.12)
     draw_swd(sh, 299.72, 154.94)
-    sh.text('Cut JP4-JP7 to use an external probe on J2\n(Tag-Connect TC2030-NL, not fitted). RESETn: open-drain only.',
+    sh.text('Cut JP4-JP7 to drive SWD from an external probe (radio-board side\nof the cut points). RESETn: open-drain only.',
             (284.48, 193.04))
     # ---- block G: ID EEPROM
     sh.block('ID EEPROM', 'RPi HAT design guide: CAT24C32 @ 0x50 on ID_SD / ID_SC, auto-loads the overlays',

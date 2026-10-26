@@ -7,3 +7,8 @@ hardware/gen/__pycache__/
 __pycache__/
 hardware/gen/lint/
 hardware/twin/
+hardware/route/
+hardware/kicad/_context.*
+hardware/kicad/_rescue/
+hardware/kicad/*.preroute
+hardware/kicad/~*.lck
