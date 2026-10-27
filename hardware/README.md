@@ -4,9 +4,11 @@ A carrier between a Raspberry Pi and a Silicon Labs radio board (BRD4265B, EFR32
 
 **Status:** schematic done (ERC 0, house-style schematic). Board routed: 2 layers, GND pour on both sides, DRC 0 errors, 0 unconnected, schematic parity 0. Not fabricated or measured yet.
 
-Schematic: [ionos_maximus_schematic.pdf](ionos_maximus_schematic.pdf).
+Schematic: [ionos_maximus_schematic.pdf](ionos_maximus_schematic.pdf). JLCPCB fabrication and assembly files (Gerber, BOM, CPL): [kicad/jlc/](kicad/jlc/README.md).
 
 <p align="center"><img src="../docs/img/rev-a_stack_iso.png" width="80%" alt="rev A on a Raspberry Pi 4B with radio board and SMA antenna"></p>
+
+<p align="center"><img src="../docs/img/rev-a_board_iso.png" width="70%" alt="rev A, routed board"></p>
 
 | Top | Bottom |
 | --- | --- |
@@ -80,5 +82,5 @@ To rebuild on Windows with KiCad 10, run `build.ps1`. It regenerates the schemat
 ## Open
 
 1. Check the BRD4265B outline, the SMA end and the parts under the radio board against a real board.
-2. LCSC fields, JLC BOM / CPL.
+2. J1 (Samtec CLH-115) sourcing for assembly: JLC Global Sourcing or hand-solder.
 3. Fiducials, silkscreen title, ID EEPROM image (overlays: spi0-1cs, disable-bt).

@@ -1,0 +1,13 @@
+Qty,Comment,Designator,Footprint,LCSC Part #,MPN,Manufacturer,Basic/Extended,SMT/THT,Key spec,Checked at,Notes
+1,10uF/6.3V,C1,CAPC1005X60_0402,C15525,CL05A106MQ5NUNC,Samsung Electro-Mechanics,Basic,SMT,10uF 6.3V X5R,https://jlcpcb.com/partdetail/C15525,
+2,1uF/16V/10%,"C2,C3",CAPC1005X60_0402,C52923,CL05A105KA5NQNC,Samsung Electro-Mechanics,Basic,SMT,1uF 25V X5R 10%,https://jlcpcb.com/partdetail/C52923,25V covers 16V
+3,100nF/50V/10%,"C4,C5,C6",CAPC1005X60_0402,C307331,CL05B104KB54PNC,Samsung Electro-Mechanics,Basic,SMT,100nF 50V X7R 10%,https://jlcpcb.com/partdetail/C307331,
+1,600R@100MHz,FB1,L5_0603,C1002,GZ1608D601TF,Sunlord,Basic,SMT,600R@100MHz 200mA,https://jlcpcb.com/partdetail/C1002,
+2,TFC-120-02-F-D-A-K-TR,"P200,P201",TFC-120-02-XX-D-A-K-TR,C17227108,TFM-120-02-L-D-K-TR,Samtec,Extended,SMT,radio board mezzanine (as ionos-sdr-mini),https://jlcpcb.com/partdetail/C17227108,Same substitute as ionos-sdr-mini (TFC not stocked)
+2,0R,"R1,R14",RESC1005X40_0402,C17168,0402WGF0000TCE,UNI-ROYAL,Basic,SMT,0R,https://jlcpcb.com/partdetail/C17168,
+8,22R,"R3,R4,R5,R6,R8,R9,R10,R11",RESC1005X40_0402,C25092,0402WGF220JTCE,UNI-ROYAL,Basic,SMT,22R 1%,https://jlcpcb.com/partdetail/C25092,
+2,10k,"R7,R12",RESC1005X40_0402,C25744,0402WGF1002TCE,UNI-ROYAL,Basic,SMT,10k 1%,https://jlcpcb.com/partdetail/C25744,
+2,3.9k,"R15,R16",RESC1005X40_0402,C51721,0402WGF3901TCE,UNI-ROYAL,Extended,SMT,3.9k 1%,https://jlcpcb.com/partdetail/C51721,HAT guide value; 4.7k Basic C25900 would avoid the extended fee
+1,1k,R17,RESC1005X40_0402,C11702,0402WGF1001TCE,UNI-ROYAL,Basic,SMT,1k 1%,https://jlcpcb.com/partdetail/C11702,
+1,LP5907MFX-3.3,U1,SOT-23-5,C80670,LP5907MFX-3.3/NOPB,Texas Instruments,Extended,SMT,250mA LDO 3.3V,https://jlcpcb.com/partdetail/C80670,
+1,CAT24C32YI-GT3,U2,TSSOP-8_4.4x3mm_P0.65mm,C94264,CAT24C32YI-GT3,onsemi,Extended,SMT,32 kbit I2C EEPROM,https://www.lcsc.com/product-detail/C94264.html,

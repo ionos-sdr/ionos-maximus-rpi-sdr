@@ -1,0 +1,21 @@
+value,footprint,refs,lcsc,mpn,manufacturer,package,basic_or_extended,smt_or_tht,key_spec,verified_url,notes
+CLH-115-F-D-DV,2X15_SMT_CROSSPCB_ASSYM,J1,NOPART,CLH-115-F-D-DV,Samtec,2x15 1.27/2.54 SMT bottom-entry socket,,SMT,RPi header pins 1-30 through the board,,Not stocked at LCSC: add via JLC Global Sourcing (Samtec) or consign / hand-solder
+TFC-120-02-F-D-A-K-TR,TFC-120-02-XX-D-A-K-TR,P200 P201,C17227108,TFM-120-02-L-D-K-TR,Samtec,2x20 1.27 mm SMT,Extended,SMT,radio board mezzanine (as ionos-sdr-mini),https://jlcpcb.com/partdetail/C17227108,Same substitute as ionos-sdr-mini (TFC not stocked)
+600R@100MHz,L5_0603,FB1,C1002,GZ1608D601TF,Sunlord,0603,Basic,SMT,600R@100MHz 200mA,https://jlcpcb.com/partdetail/C1002,
+10uF/6.3V,CAPC1005X60_0402,C1,C15525,CL05A106MQ5NUNC,Samsung Electro-Mechanics,0402,Basic,SMT,10uF 6.3V X5R,https://jlcpcb.com/partdetail/C15525,
+1uF/16V/10%,CAPC1005X60_0402,C2 C3,C52923,CL05A105KA5NQNC,Samsung Electro-Mechanics,0402,Basic,SMT,1uF 25V X5R 10%,https://jlcpcb.com/partdetail/C52923,25V covers 16V
+100nF/50V/10%,CAPC1005X60_0402,C4 C5 C6,C307331,CL05B104KB54PNC,Samsung Electro-Mechanics,0402,Basic,SMT,100nF 50V X7R 10%,https://jlcpcb.com/partdetail/C307331,
+LP5907MFX-3.3,SOT-23-5,U1,C80670,LP5907MFX-3.3/NOPB,Texas Instruments,SOT-23-5,Extended,SMT,250mA LDO 3.3V,https://jlcpcb.com/partdetail/C80670,
+0R,RESC1005X40_0402,R1 R14,C17168,0402WGF0000TCE,UNI-ROYAL,0402,Basic,SMT,0R,https://jlcpcb.com/partdetail/C17168,
+22R,RESC1005X40_0402,R3 R4 R5 R6 R8 R9 R10 R11,C25092,0402WGF220JTCE,UNI-ROYAL,0402,Basic,SMT,22R 1%,https://jlcpcb.com/partdetail/C25092,
+10k,RESC1005X40_0402,R7 R12,C25744,0402WGF1002TCE,UNI-ROYAL,0402,Basic,SMT,10k 1%,https://jlcpcb.com/partdetail/C25744,
+3.9k,RESC1005X40_0402,R15 R16,C51721,0402WGF3901TCE,UNI-ROYAL,0402,Extended,SMT,3.9k 1%,https://jlcpcb.com/partdetail/C51721,HAT guide value; 4.7k Basic C25900 would avoid the extended fee
+1k,RESC1005X40_0402,R17,C11702,0402WGF1001TCE,UNI-ROYAL,0402,Basic,SMT,1k 1%,https://jlcpcb.com/partdetail/C11702,
+CAT24C32YI-GT3,TSSOP-8_4.4x3mm_P0.65mm,U2,C94264,CAT24C32YI-GT3,onsemi,TSSOP-8,Extended,SMT,32 kbit I2C EEPROM,https://www.lcsc.com/product-detail/C94264.html,
+DRDY,TESTPOINT_40MIL_SMD,TP1,NOPART,,,,,,,,test pad
+CMD,TESTPOINT_40MIL_SMD,TP2,NOPART,,,,,,,,test pad
+EE_WP,TESTPOINT_40MIL_SMD,TP3,NOPART,,,,,,,,test pad
+VMCU_IN,TESTPOINT_40MIL_SMD,TP4,NOPART,,,,,,,,test pad
+GND,TESTPOINT_40MIL_SMD,TP5,NOPART,,,,,,,,test pad
+VRF_IN,TESTPOINT_40MIL_SMD,TP6,NOPART,,,,,,,,test pad
+5V0,TESTPOINT_40MIL_SMD,TP7,NOPART,,,,,,,,test pad

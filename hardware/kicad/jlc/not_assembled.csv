@@ -1,0 +1,23 @@
+Designator,Value,Footprint,Why
+J1,CLH-115-F-D-DV,2X15_SMT_CROSSPCB_ASSYM,Not stocked at LCSC: add via JLC Global Sourcing (Samtec) or consign / hand-solder
+JP1,Bridged,SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm,no part (pad / jumper / wire)
+JP2,Bridged,SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm,no part (pad / jumper / wire)
+JP3,Bridged,SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm,no part (pad / jumper / wire)
+JP4,Bridged,SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm,no part (pad / jumper / wire)
+JP5,Bridged,SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm,no part (pad / jumper / wire)
+JP6,Bridged,SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm,no part (pad / jumper / wire)
+JP7,Bridged,SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm,no part (pad / jumper / wire)
+JP8,Open,SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm,no part (pad / jumper / wire)
+JP9,Bridged,SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm,no part (pad / jumper / wire)
+JP10,Bridged,SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm,no part (pad / jumper / wire)
+R2,NA(0R),RESC1005X40_0402,DNP
+R13,NA(0R),RESC1005X40_0402,DNP
+R18,NA(4.7k),RESC1005X40_0402,DNP
+R19,NA(4.7k),RESC1005X40_0402,DNP
+TP1,DRDY,TESTPOINT_40MIL_SMD,test pad
+TP2,CMD,TESTPOINT_40MIL_SMD,test pad
+TP3,EE_WP,TESTPOINT_40MIL_SMD,test pad
+TP4,VMCU_IN,TESTPOINT_40MIL_SMD,test pad
+TP5,GND,TESTPOINT_40MIL_SMD,test pad
+TP6,VRF_IN,TESTPOINT_40MIL_SMD,test pad
+TP7,5V0,TESTPOINT_40MIL_SMD,test pad

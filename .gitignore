@@ -12,3 +12,10 @@ hardware/kicad/_context.*
 hardware/kicad/_rescue/
 hardware/kicad/*.preroute
 hardware/kicad/~*.lck
+hardware/kicad/jlc/easyeda_cache/
+hardware/kicad/jlc/gerber/
+hardware/kicad/jlc/*_report.csv
+hardware/kicad/jlc/*_pos_kicad.csv
+hardware/kicad/jlc/*_top.csv
+hardware/kicad/jlc/*_bottom.csv
+hardware/kicad/*.net
