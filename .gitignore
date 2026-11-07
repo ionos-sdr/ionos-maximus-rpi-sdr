@@ -19,3 +19,8 @@ hardware/kicad/jlc/*_pos_kicad.csv
 hardware/kicad/jlc/*_top.csv
 hardware/kicad/jlc/*_bottom.csv
 hardware/kicad/*.net
+host/libionos/build/
+host/soapy/build/
+host/**/__pycache__/
+host/*.egg-info/
+host/.venv/
