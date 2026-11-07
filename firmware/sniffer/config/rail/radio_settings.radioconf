@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ionos-maximus sniffer: multi-PHY radio configuration (EFR32FG23, BRD4265B)
+  SPDX-License-Identifier: MIT  (c) 2026 Zoltan Doczi (HA7DCD), Zoltan Papp - Z2 Labs
+
+  AUTHORED BY HAND, NOT YET ROUND-TRIPPED THROUGH THE RADIO CONFIGURATOR.
+  The protocol entries are in pktlink_phy_t order (pktlink.h) and must
+  stay so, because sniffer.c indexes channelConfigs[] by that order. If
+  Simplicity Studio refuses the file, delete it and recreate the ten
+  protocols from the recipe in README.md ("Radio configuration"), in the
+  same order, then re-save. The "Mbus" and SUN-FSK entries are selected
+  by their configurator PHY name; the configurator fills in the detailed
+  profile inputs itself. The generic FSK entries are complete.
+-->
+<multi_phy_configuration part_family="ocelot" part_revision="A0" rail_adapter_version="rail_api_2.x" status_code="0" xsd_version="0.0.20">
+  <base_channel_configurations>
+    <!-- channelConfigs[0] = wmbus_tc: WMbus TC M2O (100k, frameA); + RAIL_WMBUS_Config() for T+C(+frame B) RX -->
+    <base_channel_configuration name="wmbus_tc" profile="Mbus">
+      <channel_config_entries>
+        <channel_config_entry name="868.950 MHz (single channel)">
+          <channel_number_start>0</channel_number_start>
+          <channel_number_end>0</channel_number_end>
+          <physical_channel_offset>SAME_AS_FIRST_CHANNEL</physical_channel_offset>
+          <max_power>RAIL_TX_POWER_MAX</max_power>
+          <metadata>{"selectedPhy":"PHY_wMbus_ModeTC_M2O_100k_frameA"}</metadata>
+          <base_frequency>868950000</base_frequency>
+          <channel_spacing>1000000</channel_spacing>
+        </channel_config_entry>
+      </channel_config_entries>
+      <metadata>{"selectedPhy":"PHY_wMbus_ModeTC_M2O_100k_frameA"}</metadata>
+      <profile_inputs>
+        <input><key>base_frequency_hz</key><value>868950000</value></input>
+        <input><key>channel_spacing_hz</key><value>1000000</value></input>
+        <input><key>xtal_frequency_hz</key><value>39000000</value></input>
+        <input><key>rx_xtal_error_ppm</key><value>10</value></input>
+        <input><key>tx_xtal_error_ppm</key><value>10</value></input>
+      </profile_inputs>
+    </base_channel_configuration>
+    <!-- channelConfigs[1] = wmbus_s: WMbus S (32.768k, Manchester); PHY name TO VERIFY in the configurator -->
+    <base_channel_configuration name="wmbus_s" profile="Mbus">
+      <channel_config_entries>
+        <channel_config_entry name="868.300 MHz (single channel)">
+          <channel_number_start>0</channel_number_start>
+          <channel_number_end>0</channel_number_end>
+          <physical_channel_offset>SAME_AS_FIRST_CHANNEL</physical_channel_offset>
+          <max_power>RAIL_TX_POWER_MAX</max_power>
+          <metadata>{"selectedPhy":"PHY_wMbus_ModeS_32p768k"}</metadata>
+          <base_frequency>868300000</base_frequency>
+          <channel_spacing>1000000</channel_spacing>
+        </channel_config_entry>
+      </channel_config_entries>
+      <metadata>{"selectedPhy":"PHY_wMbus_ModeS_32p768k"}</metadata>
+      <profile_inputs>
+        <input><key>base_frequency_hz</key><value>868300000</value></input>
+        <input><key>channel_spacing_hz</key><value>1000000</value></input>
+        <input><key>xtal_frequency_hz</key><value>39000000</value></input>
+        <input><key>rx_xtal_error_ppm</key><value>10</value></input>
+        <input><key>tx_xtal_error_ppm</key><value>10</value></input>
+      </profile_inputs>
+    </base_channel_configuration>
+    <!-- channelConfigs[2] = wmbus_cb: WMbus C M2O frameB (100k); PHY name TO VERIFY in the configurator -->
+    <base_channel_configuration name="wmbus_cb" profile="Mbus">
+      <channel_config_entries>
+        <channel_config_entry name="868.950 MHz (single channel)">
+          <channel_number_start>0</channel_number_start>
+          <channel_number_end>0</channel_number_end>
+          <physical_channel_offset>SAME_AS_FIRST_CHANNEL</physical_channel_offset>
+          <max_power>RAIL_TX_POWER_MAX</max_power>
+          <metadata>{"selectedPhy":"PHY_wMbus_ModeC_M2O_100k_frameB"}</metadata>
+          <base_frequency>868950000</base_frequency>
+          <channel_spacing>1000000</channel_spacing>
+        </channel_config_entry>
+      </channel_config_entries>
+      <metadata>{"selectedPhy":"PHY_wMbus_ModeC_M2O_100k_frameB"}</metadata>
+      <profile_inputs>
+        <input><key>base_frequency_hz</key><value>868950000</value></input>
+        <input><key>channel_spacing_hz</key><value>1000000</value></input>
+        <input><key>xtal_frequency_hz</key><value>39000000</value></input>
+        <input><key>rx_xtal_error_ppm</key><value>10</value></input>
+        <input><key>tx_xtal_error_ppm</key><value>10</value></input>
+      </profile_inputs>
+    </base_channel_configuration>
+    <!-- channelConfigs[3] = 154g: IEEE 802.15.4g SUN-FSK, EU 863-870 MHz, 2-FSK 50 kbps, mod. index 1.0
+         (Wi-SUN FAN 1.0 EU PHY mode 1b / operating mode #1, 100 kHz channel spacing, ch0 = 863.1 MHz).
+         Select the matching PHY in the "IEEE 802.15.4 SUN FSK" (or Wi-SUN FAN) profile; name TO VERIFY. -->
+    <base_channel_configuration name="154g" profile="IEEE802154_SUN_FSK">
+      <channel_config_entries>
+        <channel_config_entry name="863.1-870.0 MHz (ch0-69, 100 kHz)">
+          <channel_number_start>0</channel_number_start>
+          <channel_number_end>69</channel_number_end>
+          <physical_channel_offset>SAME_AS_FIRST_CHANNEL</physical_channel_offset>
+          <max_power>RAIL_TX_POWER_MAX</max_power>
+          <metadata>{"selectedPhy":"PHY_IEEE802154_SUN_FSK_863MHz_2FSK_50kbps_mi1p0"}</metadata>
+          <base_frequency>863100000</base_frequency>
+          <channel_spacing>100000</channel_spacing>
+        </channel_config_entry>
+      </channel_config_entries>
+      <metadata>{"selectedPhy":"PHY_IEEE802154_SUN_FSK_863MHz_2FSK_50kbps_mi1p0"}</metadata>
+      <profile_inputs>
+        <input><key>base_frequency_hz</key><value>863100000</value></input>
+        <input><key>channel_spacing_hz</key><value>100000</value></input>
+        <input><key>xtal_frequency_hz</key><value>39000000</value></input>
+        <input><key>rx_xtal_error_ppm</key><value>10</value></input>
+        <input><key>tx_xtal_error_ppm</key><value>10</value></input>
+      </profile_inputs>
+    </base_channel_configuration>
+    <!-- channelConfigs[4] = fsk2k4: generic 2-GFSK, variable length (1-byte L), CRC-16 CCITT, sync 0x2DD4 -->
+    <base_channel_configuration name="fsk2k4" profile="Base">
+      <channel_config_entries>
+        <channel_config_entry name="863-870 MHz (ch0-280, 25 kHz)">
+          <channel_number_start>0</channel_number_start>
+          <channel_number_end>280</channel_number_end>
+          <physical_channel_offset>SAME_AS_FIRST_CHANNEL</physical_channel_offset>
+          <max_power>RAIL_TX_POWER_MAX</max_power>
+          <metadata>{"selectedPhy":"PHY_Custom"}</metadata>
+          <base_frequency>863000000</base_frequency>
+          <channel_spacing>25000</channel_spacing>
+        </channel_config_entry>
+      </channel_config_entries>
+      <metadata>{"selectedPhy":"PHY_Custom"}</metadata>
+      <profile_inputs>
+        <input><key>base_frequency_hz</key><value>863000000</value></input>
+        <input><key>channel_spacing_hz</key><value>25000</value></input>
+        <input><key>xtal_frequency_hz</key><value>39000000</value></input>
+        <input><key>rx_xtal_error_ppm</key><value>10</value></input>
+        <input><key>tx_xtal_error_ppm</key><value>10</value></input>
+        <input><key>syncword_0</key><value>11732</value></input>
+        <input><key>syncword_1</key><value>0</value></input>
+        <input><key>syncword_length</key><value>16</value></input>
+        <input><key>preamble_pattern_len</key><value>2</value></input>
+        <input><key>preamble_length</key><value>32</value></input>
+        <input><key>preamble_pattern</key><value>1</value></input>
+        <input><key>modulation_type</key><value>0</value></input>
+        <input><key>deviation</key><value>2400</value></input>
+        <input><key>bitrate</key><value>2400</value></input>
+        <input><key>baudrate_tol_ppm</key><value>0</value></input>
+        <input><key>shaping_filter</key><value>1</value></input>
+        <input><key>shaping_filter_param</key><value>0.5</value></input>
+        <input><key>fsk_symbol_map</key><value>0</value></input>
+        <input><key>diff_encoding_mode</key><value>0</value></input>
+        <input><key>dsss_chipping_code</key><value>0</value></input>
+        <input><key>dsss_len</key><value>0</value></input>
+        <input><key>dsss_spreading_factor</key><value>0</value></input>
+        <input><key>frame_bitendian</key><value>0</value></input>
+        <input><key>frame_length_type</key><value>1</value></input>
+        <input><key>header_en</key><value>true</value></input>
+        <input><key>header_size</key><value>1</value></input>
+        <input><key>header_calc_crc</key><value>false</value></input>
+        <input><key>header_white_en</key><value>false</value></input>
+        <input><key>var_length_numbits</key><value>8</value></input>
+        <input><key>var_length_bitendian</key><value>0</value></input>
+        <input><key>var_length_byteendian</key><value>0</value></input>
+        <input><key>var_length_shift</key><value>0</value></input>
+        <input><key>var_length_minlength</key><value>0</value></input>
+        <input><key>var_length_maxlength</key><value>255</value></input>
+        <input><key>var_length_includecrc</key><value>false</value></input>
+        <input><key>var_length_adjust</key><value>0</value></input>
+        <input><key>payload_white_en</key><value>false</value></input>
+        <input><key>payload_crc_en</key><value>true</value></input>
+        <input><key>fixed_length_size</key><value>16</value></input>
+        <input><key>crc_poly</key><value>2</value></input>
+        <input><key>crc_seed</key><value>65535</value></input>
+        <input><key>crc_byte_endian</key><value>0</value></input>
+        <input><key>crc_bit_endian</key><value>1</value></input>
+        <input><key>crc_pad_input</key><value>false</value></input>
+        <input><key>crc_input_order</key><value>0</value></input>
+        <input><key>crc_invert</key><value>false</value></input>
+        <input><key>bandwidth_hz</key><value>25000</value></input>
+      </profile_inputs>
+    </base_channel_configuration>
+    <!-- channelConfigs[5] = fsk4k8: generic 2-GFSK, variable length (1-byte L), CRC-16 CCITT, sync 0x2DD4 -->
+    <base_channel_configuration name="fsk4k8" profile="Base">
+      <channel_config_entries>
+        <channel_config_entry name="863-870 MHz (ch0-280, 25 kHz)">
+          <channel_number_start>0</channel_number_start>
+          <channel_number_end>280</channel_number_end>
+          <physical_channel_offset>SAME_AS_FIRST_CHANNEL</physical_channel_offset>
+          <max_power>RAIL_TX_POWER_MAX</max_power>
+          <metadata>{"selectedPhy":"PHY_Custom"}</metadata>
+          <base_frequency>863000000</base_frequency>
+          <channel_spacing>25000</channel_spacing>
+        </channel_config_entry>
+      </channel_config_entries>
+      <metadata>{"selectedPhy":"PHY_Custom"}</metadata>
+      <profile_inputs>
+        <input><key>base_frequency_hz</key><value>863000000</value></input>
+        <input><key>channel_spacing_hz</key><value>25000</value></input>
+        <input><key>xtal_frequency_hz</key><value>39000000</value></input>
+        <input><key>rx_xtal_error_ppm</key><value>10</value></input>
+        <input><key>tx_xtal_error_ppm</key><value>10</value></input>
+        <input><key>syncword_0</key><value>11732</value></input>
+        <input><key>syncword_1</key><value>0</value></input>
+        <input><key>syncword_length</key><value>16</value></input>
+        <input><key>preamble_pattern_len</key><value>2</value></input>
+        <input><key>preamble_length</key><value>32</value></input>
+        <input><key>preamble_pattern</key><value>1</value></input>
+        <input><key>modulation_type</key><value>0</value></input>
+        <input><key>deviation</key><value>2400</value></input>
+        <input><key>bitrate</key><value>4800</value></input>
+        <input><key>baudrate_tol_ppm</key><value>0</value></input>
+        <input><key>shaping_filter</key><value>1</value></input>
+        <input><key>shaping_filter_param</key><value>0.5</value></input>
+        <input><key>fsk_symbol_map</key><value>0</value></input>
+        <input><key>diff_encoding_mode</key><value>0</value></input>
+        <input><key>dsss_chipping_code</key><value>0</value></input>
+        <input><key>dsss_len</key><value>0</value></input>
+        <input><key>dsss_spreading_factor</key><value>0</value></input>
+        <input><key>frame_bitendian</key><value>0</value></input>
+        <input><key>frame_length_type</key><value>1</value></input>
+        <input><key>header_en</key><value>true</value></input>
+        <input><key>header_size</key><value>1</value></input>
+        <input><key>header_calc_crc</key><value>false</value></input>
+        <input><key>header_white_en</key><value>false</value></input>
+        <input><key>var_length_numbits</key><value>8</value></input>
+        <input><key>var_length_bitendian</key><value>0</value></input>
+        <input><key>var_length_byteendian</key><value>0</value></input>
+        <input><key>var_length_shift</key><value>0</value></input>
+        <input><key>var_length_minlength</key><value>0</value></input>
+        <input><key>var_length_maxlength</key><value>255</value></input>
+        <input><key>var_length_includecrc</key><value>false</value></input>
+        <input><key>var_length_adjust</key><value>0</value></input>
+        <input><key>payload_white_en</key><value>false</value></input>
+        <input><key>payload_crc_en</key><value>true</value></input>
+        <input><key>fixed_length_size</key><value>16</value></input>
+        <input><key>crc_poly</key><value>2</value></input>
+        <input><key>crc_seed</key><value>65535</value></input>
+        <input><key>crc_byte_endian</key><value>0</value></input>
+        <input><key>crc_bit_endian</key><value>1</value></input>
+        <input><key>crc_pad_input</key><value>false</value></input>
+        <input><key>crc_input_order</key><value>0</value></input>
+        <input><key>crc_invert</key><value>false</value></input>
+        <input><key>bandwidth_hz</key><value>25000</value></input>
+      </profile_inputs>
+    </base_channel_configuration>
+    <!-- channelConfigs[6] = fsk9k6: generic 2-GFSK, variable length (1-byte L), CRC-16 CCITT, sync 0x2DD4 -->
+    <base_channel_configuration name="fsk9k6" profile="Base">
+      <channel_config_entries>
+        <channel_config_entry name="863-870 MHz (ch0-280, 25 kHz)">
+          <channel_number_start>0</channel_number_start>
+          <channel_number_end>280</channel_number_end>
+          <physical_channel_offset>SAME_AS_FIRST_CHANNEL</physical_channel_offset>
+          <max_power>RAIL_TX_POWER_MAX</max_power>
+          <metadata>{"selectedPhy":"PHY_Custom"}</metadata>
+          <base_frequency>863000000</base_frequency>
+          <channel_spacing>25000</channel_spacing>
+        </channel_config_entry>
+      </channel_config_entries>
+      <metadata>{"selectedPhy":"PHY_Custom"}</metadata>
+      <profile_inputs>
+        <input><key>base_frequency_hz</key><value>863000000</value></input>
+        <input><key>channel_spacing_hz</key><value>25000</value></input>
+        <input><key>xtal_frequency_hz</key><value>39000000</value></input>
+        <input><key>rx_xtal_error_ppm</key><value>10</value></input>
+        <input><key>tx_xtal_error_ppm</key><value>10</value></input>
+        <input><key>syncword_0</key><value>11732</value></input>
+        <input><key>syncword_1</key><value>0</value></input>
+        <input><key>syncword_length</key><value>16</value></input>
+        <input><key>preamble_pattern_len</key><value>2</value></input>
+        <input><key>preamble_length</key><value>32</value></input>
+        <input><key>preamble_pattern</key><value>1</value></input>
+        <input><key>modulation_type</key><value>0</value></input>
+        <input><key>deviation</key><value>4800</value></input>
+        <input><key>bitrate</key><value>9600</value></input>
+        <input><key>baudrate_tol_ppm</key><value>0</value></input>
+        <input><key>shaping_filter</key><value>1</value></input>
+        <input><key>shaping_filter_param</key><value>0.5</value></input>
+        <input><key>fsk_symbol_map</key><value>0</value></input>
+        <input><key>diff_encoding_mode</key><value>0</value></input>
+        <input><key>dsss_chipping_code</key><value>0</value></input>
+        <input><key>dsss_len</key><value>0</value></input>
+        <input><key>dsss_spreading_factor</key><value>0</value></input>
+        <input><key>frame_bitendian</key><value>0</value></input>
+        <input><key>frame_length_type</key><value>1</value></input>
+        <input><key>header_en</key><value>true</value></input>
+        <input><key>header_size</key><value>1</value></input>
+        <input><key>header_calc_crc</key><value>false</value></input>
+        <input><key>header_white_en</key><value>false</value></input>
+        <input><key>var_length_numbits</key><value>8</value></input>
+        <input><key>var_length_bitendian</key><value>0</value></input>
+        <input><key>var_length_byteendian</key><value>0</value></input>
+        <input><key>var_length_shift</key><value>0</value></input>
+        <input><key>var_length_minlength</key><value>0</value></input>
+        <input><key>var_length_maxlength</key><value>255</value></input>
+        <input><key>var_length_includecrc</key><value>false</value></input>
+        <input><key>var_length_adjust</key><value>0</value></input>
+        <input><key>payload_white_en</key><value>false</value></input>
+        <input><key>payload_crc_en</key><value>true</value></input>
+        <input><key>fixed_length_size</key><value>16</value></input>
+        <input><key>crc_poly</key><value>2</value></input>
+        <input><key>crc_seed</key><value>65535</value></input>
+        <input><key>crc_byte_endian</key><value>0</value></input>
+        <input><key>crc_bit_endian</key><value>1</value></input>
+        <input><key>crc_pad_input</key><value>false</value></input>
+        <input><key>crc_input_order</key><value>0</value></input>
+        <input><key>crc_invert</key><value>false</value></input>
+        <input><key>bandwidth_hz</key><value>25000</value></input>
+      </profile_inputs>
+    </base_channel_configuration>
+    <!-- channelConfigs[7] = fsk38k4: generic 2-GFSK, variable length (1-byte L), CRC-16 CCITT, sync 0x2DD4 -->
+    <base_channel_configuration name="fsk38k4" profile="Base">
+      <channel_config_entries>
+        <channel_config_entry name="863-870 MHz (ch0-280, 25 kHz)">
+          <channel_number_start>0</channel_number_start>
+          <channel_number_end>280</channel_number_end>
+          <physical_channel_offset>SAME_AS_FIRST_CHANNEL</physical_channel_offset>
+          <max_power>RAIL_TX_POWER_MAX</max_power>
+          <metadata>{"selectedPhy":"PHY_Custom"}</metadata>
+          <base_frequency>863000000</base_frequency>
+          <channel_spacing>25000</channel_spacing>
+        </channel_config_entry>
+      </channel_config_entries>
+      <metadata>{"selectedPhy":"PHY_Custom"}</metadata>
+      <profile_inputs>
+        <input><key>base_frequency_hz</key><value>863000000</value></input>
+        <input><key>channel_spacing_hz</key><value>25000</value></input>
+        <input><key>xtal_frequency_hz</key><value>39000000</value></input>
+        <input><key>rx_xtal_error_ppm</key><value>10</value></input>
+        <input><key>tx_xtal_error_ppm</key><value>10</value></input>
+        <input><key>syncword_0</key><value>11732</value></input>
+        <input><key>syncword_1</key><value>0</value></input>
+        <input><key>syncword_length</key><value>16</value></input>
+        <input><key>preamble_pattern_len</key><value>2</value></input>
+        <input><key>preamble_length</key><value>32</value></input>
+        <input><key>preamble_pattern</key><value>1</value></input>
+        <input><key>modulation_type</key><value>0</value></input>
+        <input><key>deviation</key><value>20000</value></input>
+        <input><key>bitrate</key><value>38400</value></input>
+        <input><key>baudrate_tol_ppm</key><value>0</value></input>
+        <input><key>shaping_filter</key><value>1</value></input>
+        <input><key>shaping_filter_param</key><value>0.5</value></input>
+        <input><key>fsk_symbol_map</key><value>0</value></input>
+        <input><key>diff_encoding_mode</key><value>0</value></input>
+        <input><key>dsss_chipping_code</key><value>0</value></input>
+        <input><key>dsss_len</key><value>0</value></input>
+        <input><key>dsss_spreading_factor</key><value>0</value></input>
+        <input><key>frame_bitendian</key><value>0</value></input>
+        <input><key>frame_length_type</key><value>1</value></input>
+        <input><key>header_en</key><value>true</value></input>
+        <input><key>header_size</key><value>1</value></input>
+        <input><key>header_calc_crc</key><value>false</value></input>
+        <input><key>header_white_en</key><value>false</value></input>
+        <input><key>var_length_numbits</key><value>8</value></input>
+        <input><key>var_length_bitendian</key><value>0</value></input>
+        <input><key>var_length_byteendian</key><value>0</value></input>
+        <input><key>var_length_shift</key><value>0</value></input>
+        <input><key>var_length_minlength</key><value>0</value></input>
+        <input><key>var_length_maxlength</key><value>255</value></input>
+        <input><key>var_length_includecrc</key><value>false</value></input>
+        <input><key>var_length_adjust</key><value>0</value></input>
+        <input><key>payload_white_en</key><value>false</value></input>
+        <input><key>payload_crc_en</key><value>true</value></input>
+        <input><key>fixed_length_size</key><value>16</value></input>
+        <input><key>crc_poly</key><value>2</value></input>
+        <input><key>crc_seed</key><value>65535</value></input>
+        <input><key>crc_byte_endian</key><value>0</value></input>
+        <input><key>crc_bit_endian</key><value>1</value></input>
+        <input><key>crc_pad_input</key><value>false</value></input>
+        <input><key>crc_input_order</key><value>0</value></input>
+        <input><key>crc_invert</key><value>false</value></input>
+        <input><key>bandwidth_hz</key><value>100000</value></input>
+      </profile_inputs>
+    </base_channel_configuration>
+    <!-- channelConfigs[8] = fsk50k: generic 2-GFSK, variable length (1-byte L), CRC-16 CCITT, sync 0x2DD4 -->
+    <base_channel_configuration name="fsk50k" profile="Base">
+      <channel_config_entries>
+        <channel_config_entry name="863-870 MHz (ch0-280, 25 kHz)">
+          <channel_number_start>0</channel_number_start>
+          <channel_number_end>280</channel_number_end>
+          <physical_channel_offset>SAME_AS_FIRST_CHANNEL</physical_channel_offset>
+          <max_power>RAIL_TX_POWER_MAX</max_power>
+          <metadata>{"selectedPhy":"PHY_Custom"}</metadata>
+          <base_frequency>863000000</base_frequency>
+          <channel_spacing>25000</channel_spacing>
+        </channel_config_entry>
+      </channel_config_entries>
+      <metadata>{"selectedPhy":"PHY_Custom"}</metadata>
+      <profile_inputs>
+        <input><key>base_frequency_hz</key><value>863000000</value></input>
+        <input><key>channel_spacing_hz</key><value>25000</value></input>
+        <input><key>xtal_frequency_hz</key><value>39000000</value></input>
+        <input><key>rx_xtal_error_ppm</key><value>10</value></input>
+        <input><key>tx_xtal_error_ppm</key><value>10</value></input>
+        <input><key>syncword_0</key><value>11732</value></input>
+        <input><key>syncword_1</key><value>0</value></input>
+        <input><key>syncword_length</key><value>16</value></input>
+        <input><key>preamble_pattern_len</key><value>2</value></input>
+        <input><key>preamble_length</key><value>32</value></input>
+        <input><key>preamble_pattern</key><value>1</value></input>
+        <input><key>modulation_type</key><value>0</value></input>
+        <input><key>deviation</key><value>25000</value></input>
+        <input><key>bitrate</key><value>50000</value></input>
+        <input><key>baudrate_tol_ppm</key><value>0</value></input>
+        <input><key>shaping_filter</key><value>1</value></input>
+        <input><key>shaping_filter_param</key><value>0.5</value></input>
+        <input><key>fsk_symbol_map</key><value>0</value></input>
+        <input><key>diff_encoding_mode</key><value>0</value></input>
+        <input><key>dsss_chipping_code</key><value>0</value></input>
+        <input><key>dsss_len</key><value>0</value></input>
+        <input><key>dsss_spreading_factor</key><value>0</value></input>
+        <input><key>frame_bitendian</key><value>0</value></input>
+        <input><key>frame_length_type</key><value>1</value></input>
+        <input><key>header_en</key><value>true</value></input>
+        <input><key>header_size</key><value>1</value></input>
+        <input><key>header_calc_crc</key><value>false</value></input>
+        <input><key>header_white_en</key><value>false</value></input>
+        <input><key>var_length_numbits</key><value>8</value></input>
+        <input><key>var_length_bitendian</key><value>0</value></input>
+        <input><key>var_length_byteendian</key><value>0</value></input>
+        <input><key>var_length_shift</key><value>0</value></input>
+        <input><key>var_length_minlength</key><value>0</value></input>
+        <input><key>var_length_maxlength</key><value>255</value></input>
+        <input><key>var_length_includecrc</key><value>false</value></input>
+        <input><key>var_length_adjust</key><value>0</value></input>
+        <input><key>payload_white_en</key><value>false</value></input>
+        <input><key>payload_crc_en</key><value>true</value></input>
+        <input><key>fixed_length_size</key><value>16</value></input>
+        <input><key>crc_poly</key><value>2</value></input>
+        <input><key>crc_seed</key><value>65535</value></input>
+        <input><key>crc_byte_endian</key><value>0</value></input>
+        <input><key>crc_bit_endian</key><value>1</value></input>
+        <input><key>crc_pad_input</key><value>false</value></input>
+        <input><key>crc_input_order</key><value>0</value></input>
+        <input><key>crc_invert</key><value>false</value></input>
+        <input><key>bandwidth_hz</key><value>150000</value></input>
+      </profile_inputs>
+    </base_channel_configuration>
+    <!-- channelConfigs[9] = fsk100k: generic 2-GFSK, variable length (1-byte L), CRC-16 CCITT, sync 0x2DD4 -->
+    <base_channel_configuration name="fsk100k" profile="Base">
+      <channel_config_entries>
+        <channel_config_entry name="863-870 MHz (ch0-280, 25 kHz)">
+          <channel_number_start>0</channel_number_start>
+          <channel_number_end>280</channel_number_end>
+          <physical_channel_offset>SAME_AS_FIRST_CHANNEL</physical_channel_offset>
+          <max_power>RAIL_TX_POWER_MAX</max_power>
+          <metadata>{"selectedPhy":"PHY_Custom"}</metadata>
+          <base_frequency>863000000</base_frequency>
+          <channel_spacing>25000</channel_spacing>
+        </channel_config_entry>
+      </channel_config_entries>
+      <metadata>{"selectedPhy":"PHY_Custom"}</metadata>
+      <profile_inputs>
+        <input><key>base_frequency_hz</key><value>863000000</value></input>
+        <input><key>channel_spacing_hz</key><value>25000</value></input>
+        <input><key>xtal_frequency_hz</key><value>39000000</value></input>
+        <input><key>rx_xtal_error_ppm</key><value>10</value></input>
+        <input><key>tx_xtal_error_ppm</key><value>10</value></input>
+        <input><key>syncword_0</key><value>11732</value></input>
+        <input><key>syncword_1</key><value>0</value></input>
+        <input><key>syncword_length</key><value>16</value></input>
+        <input><key>preamble_pattern_len</key><value>2</value></input>
+        <input><key>preamble_length</key><value>32</value></input>
+        <input><key>preamble_pattern</key><value>1</value></input>
+        <input><key>modulation_type</key><value>0</value></input>
+        <input><key>deviation</key><value>50000</value></input>
+        <input><key>bitrate</key><value>100000</value></input>
+        <input><key>baudrate_tol_ppm</key><value>0</value></input>
+        <input><key>shaping_filter</key><value>1</value></input>
+        <input><key>shaping_filter_param</key><value>0.5</value></input>
+        <input><key>fsk_symbol_map</key><value>0</value></input>
+        <input><key>diff_encoding_mode</key><value>0</value></input>
+        <input><key>dsss_chipping_code</key><value>0</value></input>
+        <input><key>dsss_len</key><value>0</value></input>
+        <input><key>dsss_spreading_factor</key><value>0</value></input>
+        <input><key>frame_bitendian</key><value>0</value></input>
+        <input><key>frame_length_type</key><value>1</value></input>
+        <input><key>header_en</key><value>true</value></input>
+        <input><key>header_size</key><value>1</value></input>
+        <input><key>header_calc_crc</key><value>false</value></input>
+        <input><key>header_white_en</key><value>false</value></input>
+        <input><key>var_length_numbits</key><value>8</value></input>
+        <input><key>var_length_bitendian</key><value>0</value></input>
+        <input><key>var_length_byteendian</key><value>0</value></input>
+        <input><key>var_length_shift</key><value>0</value></input>
+        <input><key>var_length_minlength</key><value>0</value></input>
+        <input><key>var_length_maxlength</key><value>255</value></input>
+        <input><key>var_length_includecrc</key><value>false</value></input>
+        <input><key>var_length_adjust</key><value>0</value></input>
+        <input><key>payload_white_en</key><value>false</value></input>
+        <input><key>payload_crc_en</key><value>true</value></input>
+        <input><key>fixed_length_size</key><value>16</value></input>
+        <input><key>crc_poly</key><value>2</value></input>
+        <input><key>crc_seed</key><value>65535</value></input>
+        <input><key>crc_byte_endian</key><value>0</value></input>
+        <input><key>crc_bit_endian</key><value>1</value></input>
+        <input><key>crc_pad_input</key><value>false</value></input>
+        <input><key>crc_input_order</key><value>0</value></input>
+        <input><key>crc_invert</key><value>false</value></input>
+        <input><key>bandwidth_hz</key><value>250000</value></input>
+      </profile_inputs>
+    </base_channel_configuration>
+  </base_channel_configurations>
+</multi_phy_configuration>

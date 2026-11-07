@@ -1,0 +1,105 @@
+# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
+# ionos-maximus FG23 multi-PHY packet sniffer (RAIL). MIT, see ../../LICENSE.
+project_name: ionos_sniffer_fg23
+label: ionos_sniffer_fg23
+description: |
+  ionos-maximus packet sniffer for the EFR32FG23 radio board (BRD4265B):
+  wM-Bus T/C/S, IEEE 802.15.4g SUN-FSK and generic 2-FSK presets on RAIL,
+  packets forwarded to a Raspberry Pi as text, rtl_wmbus lines or PKT1
+  blocks over VCOM UART or SPI secondary (README mode A).
+category: RAIL Examples
+filter:
+- name: Device Type
+  value: [SoC]
+- name: Project Difficulty
+  value: [Advanced]
+- name: Wireless Technology
+  value: [RAIL]
+package: rail_sdk_sample_applications
+quality: experimental
+readme:
+- {path: README.md}
+source:
+- {path: main.c}
+- {path: app.c}
+- {path: sniffer.c}
+- {path: pktlink.c}
+- {path: wmbus_frame.c}
+- {path: cmd.c}
+- {path: cmdlink.c}
+include:
+- path: .
+  file_list:
+  - {path: app_init.h}
+  - {path: app_process.h}
+  - {path: sniffer.h}
+  - {path: pktlink.h}
+  - {path: pktlink_port.h}
+  - {path: wmbus_frame.h}
+  - {path: cmd.h}
+  - {path: cmdlink.h}
+sdk: {id: simplicity_sdk, version: 2025.6.3}
+toolchain_settings:
+- {value: -O2, option: optimize}
+- {value: -std=c99, option: gcc_c_language_standard}
+component:
+- {id: EFR32FG23B010F512IM48}
+- {id: board_control}
+- {id: brd4001a}
+- {id: brd4265b}
+- {id: clock_manager}
+- {id: device_init}
+- {id: dmadrv}
+- {id: emlib_cmu}
+- {id: emlib_eusart}
+- {id: emlib_gpio}
+- {id: emlib_ldma}
+- {id: emlib_usart}
+- instance: [vcom]
+  id: iostream_eusart
+- {id: iostream_retarget_stdio}
+- {id: mpu}
+- {id: radio_config_simple_rail_singlephy}
+- instance: [inst0]
+  id: rail_util_init
+- {id: rail_util_pa}
+- {id: rail_util_protocol}
+- {id: sl_main}
+requires:
+- {name: a_radio_config}
+configuration:
+- {name: SL_STACK_SIZE, value: '4096'}
+- {name: SL_HEAP_SIZE, value: '4096'}
+- condition: [device_series_2]
+  name: SL_IOSTREAM_EUSART_VCOM_FLOW_CONTROL_TYPE
+  value: SL_IOSTREAM_EUSART_UART_FLOW_CTRL_NONE
+- {name: SL_IOSTREAM_EUSART_VCOM_BAUDRATE, value: '921600'}
+- {name: SL_RAIL_UTIL_INIT_INIT_COMPLETE_CALLBACK_INST0_ENABLE, value: '1'}
+- {name: SL_RAIL_UTIL_INIT_RADIO_CONFIG_SUPPORT_INST0_ENABLE, value: '1'}
+- {name: SL_RAIL_UTIL_INIT_PROTOCOLS_INST0_ENABLE, value: '1'}
+- {name: SL_RAIL_UTIL_INIT_PROTOCOL_INST0_DEFAULT, value: SL_RAIL_UTIL_PROTOCOL_PROPRIETARY}
+- {name: SL_RAIL_UTIL_INIT_PROTOCOL_PROPRIETARY_INST0_INDEX, value: '0'}
+- {name: SL_RAIL_UTIL_PROTOCOL_BLE_ENABLE, value: '0'}
+- {name: SL_RAIL_UTIL_PROTOCOL_IEEE802154_2P4GHZ_ENABLE, value: '0'}
+- {name: SL_RAIL_UTIL_PROTOCOL_IEEE802154_GB868_ENABLE, value: '0'}
+- {name: SL_RAIL_UTIL_PROTOCOL_ZWAVE_ENABLE, value: '0'}
+- {name: SL_RAIL_UTIL_PROTOCOL_SIDEWALK_ENABLE, value: '0'}
+- {name: SL_RAIL_UTIL_INIT_CALIBRATIONS_INST0_ENABLE, value: '1'}
+- {name: SL_RAIL_UTIL_INIT_CALIBRATION_TEMPERATURE_NOTIFY_INST0_ENABLE, value: '1'}
+- {name: SL_RAIL_UTIL_INIT_CALIBRATION_ONETIME_NOTIFY_INST0_ENABLE, value: '1'}
+- {name: SL_RAIL_UTIL_INIT_TRANSITIONS_INST0_ENABLE, value: '1'}
+- {name: SL_RAIL_UTIL_INIT_TRANSITION_INST0_RX_SUCCESS, value: RAIL_RF_STATE_RX}
+- {name: SL_RAIL_UTIL_INIT_TRANSITION_INST0_RX_ERROR, value: RAIL_RF_STATE_RX}
+- {name: SL_RAIL_UTIL_INIT_DATA_FORMATS_INST0_ENABLE, value: '1'}
+- {name: SL_RAIL_UTIL_INIT_DATA_FORMAT_INST0_RX_SOURCE, value: RX_PACKET_DATA}
+- {name: SL_RAIL_UTIL_INIT_DATA_FORMAT_INST0_RX_MODE, value: PACKET_MODE}
+- {name: SL_RAIL_UTIL_INIT_EVENTS_INST0_ENABLE, value: '1'}
+- {name: SL_RAIL_UTIL_INIT_EVENT_RX_PACKET_RECEIVED_INST0_ENABLE, value: '1'}
+- {name: SL_RAIL_UTIL_INIT_EVENT_RX_FRAME_ERROR_INST0_ENABLE, value: '1'}
+- {name: SL_RAIL_UTIL_INIT_EVENT_RX_PACKET_ABORTED_INST0_ENABLE, value: '1'}
+- {name: SL_RAIL_UTIL_INIT_EVENT_RX_FIFO_OVERFLOW_INST0_ENABLE, value: '1'}
+- {name: SL_RAIL_UTIL_INIT_EVENT_CAL_NEEDED_INST0_ENABLE, value: '1'}
+ui_hints:
+  highlight:
+  - {path: config/rail/radio_settings.radioconf}
+  - {path: README.md, focus: true}
