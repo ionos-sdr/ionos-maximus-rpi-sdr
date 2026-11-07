@@ -1,0 +1,10 @@
+# /etc/default/ionos-sniffd — environment of ionos-sniffd.service
+# Rev A (one FG23, WSTK radio board): SPI0 CE0 + DRDY GPIO25, cmdlink on the PL011 (GPIO14)
+SNIFFD_SOURCE=spi:/dev/spidev0.0
+SNIFFD_CMD=/dev/ttyAMA0
+SNIFFD_PHY=wmbus_tc
+RTLWMBUS_FIFO=/run/ionos/wmbus.fifo
+SNIFFD_JSONL=127.0.0.1:7771
+# Rev B radio 2: SNIFFD_SOURCE=spi:/dev/spidev0.1 and SNIFFD_EXTRA="--drdy gpiochip0:4"
+# Bench over the WSTK USB CDC port: SNIFFD_SOURCE=serial:/dev/ttyACM0 SNIFFD_CMD=
+SNIFFD_EXTRA=--drdy gpiochip0:25

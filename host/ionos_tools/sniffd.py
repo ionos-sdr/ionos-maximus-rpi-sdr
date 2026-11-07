@@ -24,6 +24,7 @@ import json
 import os
 import select
 import socket
+import stat
 import sys
 import threading
 import time
@@ -326,7 +327,14 @@ def main(argv: Optional[List[str]] = None) -> int:
     # --- sinks ---
     rtl_out: Optional[TextIO] = None
     if a.rtlwmbus:
-        rtl_out = sys.stdout if a.rtlwmbus == "-" else open(a.rtlwmbus, "w", buffering=1)
+        if a.rtlwmbus == "-":
+            rtl_out = sys.stdout
+        elif os.path.exists(a.rtlwmbus) and stat.S_ISFIFO(os.stat(a.rtlwmbus).st_mode):
+            # O_RDWR: does not block until wmbusmeters attaches, and survives
+            # the reader going away (writes then just sit in the pipe buffer).
+            rtl_out = os.fdopen(os.open(a.rtlwmbus, os.O_RDWR), "w", buffering=1)
+        else:
+            rtl_out = open(a.rtlwmbus, "w", buffering=1)
     pcap: Optional[PcapWriter] = None
     if a.pcap:
         dlt = a.dlt if a.dlt is not None else (DLT_IEEE802_15_4_TAP if a.phy == "154g" else DLT_USER0)

@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: MIT
+# ionos-maximus sniffer daemon: FG23 -> rtl_wmbus FIFO + pcap + JSON lines
+[Unit]
+Description=ionos-maximus FG23 packet sniffer daemon
+After=local-fs.target
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/default/ionos-sniffd
+ExecStartPre=/bin/sh -c 'test -p ${RTLWMBUS_FIFO:-/run/ionos/wmbus.fifo} || (mkdir -p /run/ionos && mkfifo ${RTLWMBUS_FIFO:-/run/ionos/wmbus.fifo})'
+ExecStart=/opt/ionos/venv/bin/sniffd --source ${SNIFFD_SOURCE} --cmd ${SNIFFD_CMD} --phy ${SNIFFD_PHY} \
+          --rtlwmbus ${RTLWMBUS_FIFO} --jsonl ${SNIFFD_JSONL} --acc-summary /var/lib/ionos/acc_summary.json \
+          --stats-interval 60 ${SNIFFD_EXTRA}
+Restart=always
+RestartSec=3
+User=root
+StateDirectory=ionos
+RuntimeDirectory=ionos
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,5 @@
+# /etc/wmbusmeters.d/MyWater — one file per meter (see wmbusmeters docs for drivers)
+name=MyWater
+driver=auto
+id=12345678
+key=00112233445566778899AABBCCDDEEFF

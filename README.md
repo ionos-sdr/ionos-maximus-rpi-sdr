@@ -134,6 +134,20 @@ Details in [docs/measurement-plan.md](docs/measurement-plan.md).
 | M4 | End-to-end sustained rate into the Pi | no dropped blocks over 1 h at the target rate |
 | M5 | Pi-side CPU load and latency (Pi 4 vs Pi 5) | headroom for local SDR++ |
 
+## Software
+
+First release of the software stack, written against the public RAIL API and
+tested on the host with replay data; **not yet run on hardware**.
+
+| Directory | Content |
+|---|---|
+| [`firmware/sniffer/`](firmware/sniffer/README.md) | FG23 multi-PHY packet sniffer on RAIL: wM-Bus T+C/S/C-frame-B, IEEE 802.15.4g SUN-FSK, generic 2-FSK presets; text, rtl_wmbus-compatible and `PKT1` binary output over VCOM UART or SPI secondary + DRDY (mode A). Same binary for rev A and rev B radio 2 |
+| [`host/`](host/README.md) | Raspberry Pi: `sniffd` (rtl_wmbus lines for wmbusmeters, pcap with TAP metadata, JSON lines, ACC-based PER per meter), `libionos` (C, IQB2/PKT1 block transport, replay backend), SoapySDR module, `install.sh`, systemd units |
+
+The I/Q capture firmware (`iq_capture`, IQB2 blocks) lives in
+[ionos-sdr/ionos-sdr](https://github.com/ionos-sdr/ionos-sdr); the `PKT1`
+packet blocks use the same 1040-byte framing so the Pi DMA path is shared.
+
 ## Related repositories
 
 - [ionos-sdr/ionos-sdr](https://github.com/ionos-sdr/ionos-sdr) – firmware, `libionos`, host software
